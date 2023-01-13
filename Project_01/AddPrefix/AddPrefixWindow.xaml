@@ -7,27 +7,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 
     HorizontalContentAlignment="Stretch"
-    Background="White"
+    Background="#f2f1df"
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <UserControl.Resources />
-    <Grid>
-        <StackPanel Margin="10">
-            <TextBlock FontWeight="Bold" HorizontalAlignment="left">Add Prefix</TextBlock>
-            <TextBox x:Name="prefixInput" Text="{Binding _Prefix}" TextChanged="prefixInput_TextChanged" HorizontalAlignment="Stretch"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+    <Grid >
+        <StackPanel Margin="10" HorizontalAlignment="Left">
+            <TextBlock FontWeight="Bold" HorizontalAlignment="left" Padding="3">Add Prefix</TextBlock>
+            <TextBox x:Name="prefixInput" Text="" TextChanged="prefixInput_TextChanged" MaxWidth="200px" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Padding="3" 
+                         Height="25"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition  />
                         <ColumnDefinition  Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border
-                Grid.Column="1"
-                Margin="120,10,0,0"
-                CornerRadius="10"
-                Background="CadetBlue"
+                    Grid.Column="1"
+                    Margin="0,10,0,0"
+                   
+                    CornerRadius="5"
+                    Background="#63abd4"
                         
-                Width="60">
+                    Width="60">
 
                         <Button
                     Padding="0 3"

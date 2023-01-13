@@ -189,10 +189,10 @@
                             <DataTemplate x:Key="DefaultItemTemplate">
                                 <StackPanel
                                     x:Name="RuleRow"
-                                    Width="230"
+                                    Width="370"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch">
-                                    <Grid Width="230" Height="30">
+                                    <Grid Width="370" Height="30">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="5*" />
                                             <ColumnDefinition Width="*" />
@@ -203,13 +203,15 @@
                                         <TextBlock
                                             Grid.Column="0"
                                             Height="20"
-                                            HorizontalAlignment="Center"
+                                            HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
                                             TextWrapping="Wrap"><Run FontSize="16" Text="{Binding Name}" /></TextBlock>
                                         <CheckBox
+                            
                                             Grid.Column="2"
                                             Width="20"
                                             Height="20"
+                                            Margin="0,5,0,0"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             Checked="Box_checked_click"
@@ -246,13 +248,13 @@
                             <DataTemplate x:Key="SelectedItemTemplate">
                                 <StackPanel
                                     x:Name="RuleRow"
-                                    Width="230"
+                                    Width="370"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch">
-                                    <Grid Width="300" Height="30">
+                                    <Grid Width="370" Height="30">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="5*" />
+                                            <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
@@ -264,15 +266,16 @@
                                             VerticalAlignment="Center"
                                             Source="./Assets/Icons/Minus.png" />
                                         <TextBlock
-                                            Grid.Column="1"
+                                            Grid.Column="0"
                                             Height="20"
-                                            HorizontalAlignment="Center"
+                                            HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
-                                            TextWrapping="Wrap"><Run FontSize="16" Text="{Binding Name}" /></TextBlock>
+                                            TextWrapping="Wrap"><Run FontWeight="Bold" FontSize="16" Text="{Binding Name}" /></TextBlock>
                                         <CheckBox
                                             Grid.Column="2"
                                             Width="20"
                                             Height="20"
+                                            Margin="0,5,0,0"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center"
                                             Checked="Box_checked_click"
@@ -281,7 +284,7 @@
                                             Unchecked="Box_unchecked_click" />
                                         <Button
                                             x:Name="Remove_Rule_Button"
-                                            Grid.Column="3"
+                                            Grid.Column="4"
                                             Width="20"
                                             Padding="3,3,3,3"
                                             HorizontalAlignment="Center"
@@ -291,34 +294,13 @@
                                             Click="Remove_Rule_Button_Click"
                                             CommandParameter="{Binding}"
                                             Cursor="Hand">
-                                            <Button.Style>
-                                                <Style TargetType="{x:Type Button}">
-                                                    <Setter Property="Background" Value="Transparent" />
-                                                    <Setter Property="Template">
-                                                        <Setter.Value>
-                                                            <ControlTemplate TargetType="{x:Type Button}">
-                                                                <Border
-                                                                    Background="{TemplateBinding Background}"
-                                                                    BorderBrush="Black"
-                                                                    BorderThickness="0">
-                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                                </Border>
-                                                            </ControlTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="Transparent" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Button.Style>
-                                            <Image Source="./Assets/Icons/Remove.png" />
+
+                                            <Image Source="./Assets/Icons/Cross.png" />
                                         </Button>
                                     </Grid>
                                     <UserControl
                                         Name="ConfigurationUI"
-                                        Height="160"
+                                        Height="auto"
                                         VerticalAlignment="Stretch"
                                         HorizontalContentAlignment="Stretch"
                                         VerticalContentAlignment="Stretch"
@@ -331,6 +313,7 @@
                             <Style TargetType="ListBoxItem">
 
 
+                                <Setter Property="Height" Value="auto" />
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 <Setter Property="Padding" Value="5" />
                                 <Setter Property="Margin" Value="0,0,0,0" />
@@ -349,7 +332,7 @@
                                                     <DoubleAnimation
                                                         Storyboard.TargetProperty="MinHeight"
                                                         From="40"
-                                                        To="195"
+                                                        To="120"
                                                         Duration="0:0:0.2" />
                                                     <DoubleAnimation
                                                         Storyboard.TargetProperty="MaxHeight"
@@ -364,12 +347,12 @@
                                                 <Storyboard>
                                                     <DoubleAnimation
                                                         Storyboard.TargetProperty="MinHeight"
-                                                        From="195"
+                                        
                                                         To="40"
                                                         Duration="0:0:0.2" />
                                                     <DoubleAnimation
                                                         Storyboard.TargetProperty="MaxHeight"
-                                                        From="195"
+                                            
                                                         To="40"
                                                         Duration="0:0:0.2" />
                                                 </Storyboard>

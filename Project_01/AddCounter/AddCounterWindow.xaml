@@ -10,14 +10,14 @@
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              Loaded="UserControl_Loaded">
-    <Grid>
+    <Grid MinWidth="200px">
         <StackPanel
             Margin="10">
             <Label 
                 FontWeight="Bold"
                 Content="Start"/>
             <TextBox x:Name="Start_input" Text="{Binding _start}" Padding="3"
-                     
+                      Height="25"
                      PreviewTextInput="ValidationTextBox" HorizontalAlignment="Stretch"
              TextChanged="start_text_change"            />
 
@@ -25,23 +25,27 @@
                 FontWeight="Bold"
                 Content="Step"/>
             <TextBox x:Name="Step_input" Text="{Binding _step}" Padding="3"
+                     MaxWidth="200px"
                      PreviewTextInput="ValidationTextBox" HorizontalAlignment="Stretch"
-               TextChanged="step_text_change"           />
+               TextChanged="step_text_change"      
+                         Height="25"
+                     />
 
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <DockPanel LastChildFill="True"   HorizontalAlignment="Right">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition  />
                         <ColumnDefinition  Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border
-                Grid.Column="1"
-                Margin="120,10,0,0"
-                CornerRadius="5"
-                Background="#63abd4"
+                    Grid.Column="1"
+                    Margin="0,10,0,0"
+                   
+                    CornerRadius="5"
+                    Background="#63abd4"
                         
-                Width="60">
+                    Width="60">
 
                         <Button
                     Padding="0 3"
@@ -52,11 +56,11 @@
                     Click="Apply_button_click"
                     />
                     </Border>
-                    <TextBlock x:Name="NotifyText" Text=""></TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,100,0" x:Name="NotifyText" Text=""></TextBlock>
                 </Grid>
 
 
-            </StackPanel>
+            </DockPanel>
 
         </StackPanel>
     </Grid>
