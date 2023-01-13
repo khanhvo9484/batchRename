@@ -1,7 +1,7 @@
 ﻿ChangeExtension
 
 
-winexe
+library
 C#
 .cs
 D:\Github\batchRename\Project_01\ChangeExtension\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-1219584333
+1-898171183
 
-5271369113
-15-131857280
-MainWindow.xaml;
+6708746856
+16-648460502
+ChangeExtensionWindow.xaml;
 
 False
 

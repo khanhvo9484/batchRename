@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
 using System.IO;
+using Newtonsoft.Json;
 //using System.Windows.Forms;
 
 namespace BatchRename
@@ -70,6 +71,7 @@ namespace BatchRename
             ruleCombobox.ItemsSource = NameRules;
             rulesSideBar.ItemsSource = UserRuleList;
             FilesTable.ItemsSource = Files;
+            presetCombobox.ItemsSource = Presets;
 
         }
         
@@ -102,7 +104,8 @@ namespace BatchRename
   
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            FilesTable.ItemsSource = Files;     
+            FilesTable.ItemsSource = Files;
+            loadAllPreset();
         }
         private void Box_checked_click(object sender, RoutedEventArgs e)
         {
@@ -499,13 +502,120 @@ namespace BatchRename
            
         }
 
+        public void loadAllPreset()
+        {
+            string[] fileArray = Directory.GetFiles("Preset", "*.json");
+            Presets.Clear();
+            foreach (string file in fileArray)
+            {
+                string fileName = file.Substring(file.LastIndexOf('\\') + 1);
+                fileName = fileName.Substring(0, fileName.LastIndexOf('.'));
+                Presets.Add(new Preset() { PresetName = fileName, PresetPath = file });
+            }
+            //lvPreset.ItemsSource = Presets;
+        }
+        public void loadRules(string filePath)
+        {
+            UserRuleList.Clear();
+            using (StreamReader r = new StreamReader(filePath))
+            {
+                string json = r.ReadToEnd();
+                List<rulesFromPreset> items = JsonConvert.DeserializeObject<List<rulesFromPreset>>(json);
+                foreach (rulesFromPreset rule in items)
+                {
+                    //MessageBox.Show($"Name: {rule.name}, arg1: {rule._arg1}, arg2: {rule._arg2}");
+                    for (int i = 0; i < RuleList.Count(); i++)
+                    {
+                        if (RuleList[i].Name == rule.name)
+                        {
+
+                            UserRuleList.Add(RuleList[i].Clone(rule._arg1, rule._arg2));
+                            break;
+                        }
+                    }
+                }
+            }
+            checkAllRules.IsChecked = true;
+            checkAllRules_Click(null, null);
+            Update_Preview();
+        }
         private void SavePresetButton_Click(object sender, RoutedEventArgs e)
         {
-            InputDialog inputDialog = new InputDialog("Please enter your name:", "John Doe");
+            InputDialog inputDialog = new InputDialog("Please enter preset name:", "");
             if (inputDialog.ShowDialog() == true)
             {
+                string inputPresetName=inputDialog.Answer;
+                string nameWindows = "Save preset";
+                if (inputPresetName == "")
+                {
+                    MessageBox.Show("Please enter preset name!", nameWindows);
+                    return;
+                }
+                if (UserRuleList.Count() == 0)
+                {
+                    MessageBox.Show("Nothing to save!", nameWindows);
+                    return;
+                }
+                string newPresetName = inputPresetName + ".json";
+                string newPath = "Preset/" + newPresetName;
+                string notification = "Preset name exists! Would you like to replace it?";
+                if (System.IO.File.Exists("Preset/" + newPresetName))
+                {
+                    var replace = MessageBox.Show(notification, nameWindows, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (replace == MessageBoxResult.Yes)
+                    {
+                        var json = JsonConvert.SerializeObject(UserRuleList, Formatting.Indented);
+                        System.IO.File.WriteAllText(newPath, json);
+                        //reload preset
+                        for (int i = 0; i < Presets.Count(); i++)
+                        {
+                            if (Presets[i].PresetName == inputPresetName)
+                            {
+                                loadRules(Presets[i].PresetPath);
+                            }
+                        }
+                        MessageBox.Show("Successful!", nameWindows);
+                    }
+                    else if (replace == MessageBoxResult.No)
+                    {
+                        //do nothing
+                    }
+                }
+                else
+                {
+                    var json = JsonConvert.SerializeObject(UserRuleList, Formatting.Indented);
+                    System.IO.File.WriteAllText(newPath, json);
+                    Presets.Add(new Preset() { PresetName = inputPresetName, PresetPath = newPath });
+                    MessageBox.Show("Successful!", nameWindows);
+                    //lvPreset.ItemsSource = Presets;
+                }
+
+             
                 //lblName.Text = inputDialog.Answer;
             }
+        }
+
+        private void loadPresetRules(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        private void presetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index=presetCombobox.SelectedIndex;
+            if(index != -1)
+            {
+                loadRules(Presets[index].PresetPath);
+            }
+            //var presetName = ((sender as Button).Content as TextBlock).Text;
+            //for (int i = 0; i < Presets.Count(); i++)
+            //{
+            //    if (Presets[i].PresetName == presetName)
+            //    {
+            //        presetCombobox.SelectedIndex = i;
+            //        loadRules(Presets[i].PresetPath);
+            //        break;
+            //    }
+            //}
         }
     }
 

@@ -88,10 +88,14 @@
                         Width="310"
                         HorizontalAlignment="Left"
                         IsEditable="True"
-                        Text="Select Preset">
-                        <ComboBoxItem Content="Item #1" />
-                        <ComboBoxItem Content="Item #2" />
-                        <ComboBoxItem Content="Item #3" />
+                        Text="Select Preset" SelectionChanged="presetCombobox_SelectionChanged">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PresetName}" />
+                            </DataTemplate>
+                            
+                        </ComboBox.ItemTemplate>
+                        
                     </ComboBox>
                     <Button
                         x:Name="SavePresetButton"
