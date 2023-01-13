@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AddCounter"
              mc:Ignorable="d" 
-              Background="White"
+              Background="#f2f1df"
              HorizontalContentAlignment="Stretch"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
@@ -38,8 +38,8 @@
                     <Border
                 Grid.Column="1"
                 Margin="120,10,0,0"
-                CornerRadius="10"
-                Background="CadetBlue"
+                CornerRadius="5"
+                Background="#63abd4"
                         
                 Width="60">
 
@@ -52,8 +52,7 @@
                     Click="Apply_button_click"
                     />
                     </Border>
-                    <Image Name="status" Source="./Icons/cross.png" Grid.Column="0"   Width="20" Margin="0,10,0,0">
-                    </Image>
+                    <TextBlock x:Name="NotifyText" Text=""></TextBlock>
                 </Grid>
 
 

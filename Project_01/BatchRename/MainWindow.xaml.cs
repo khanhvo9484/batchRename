@@ -20,7 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
 using System.IO;
-
+//using System.Windows.Forms;
 
 namespace BatchRename
 {
@@ -86,7 +86,7 @@ namespace BatchRename
                 if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
                     MyFolder MyFileInfo= new MyFolder(dialog.FileName);
-                    if(!myHelper.isExistInList(Files, MyFileInfo))
+                    if(!myHelper.isExistInList(Folders, MyFileInfo))
                     {
                         Folders.Add(MyFileInfo);
                     }
@@ -94,33 +94,7 @@ namespace BatchRename
                     //MessageBox.Show("You selected: " + dialog.FileName);
                 }
             }
-            //if (FilesTable.ItemsSource == _listFiles)
-            //{
-            //    var screen = new OpenFileDialog
-            //    {
-            //        Multiselect = true
-            //    };
-            //    if (screen.ShowDialog() == true)
-            //    {
-            //        foreach (var file in screen.FileNames)
-            //        {
-            //            var fullPath = file;
-            //            var info = new FileInfo(fullPath);
-            //            var shortName = info.Name;
-            //            _listFiles.Add(new MyFileInfo() { FullPath = fullPath, ShortPath = shortName });
-            //        }
-            //        _dropFileArea.Visibility = "Hidden";
-            //    }
-            //}
-            //else if (FilesTable.ItemsSource == _listFolders)
-            //{
-            //    CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            //    dialog.IsFolderPicker = true;
-            //    if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            //    {
-            //        MessageBox.Show("You selected: " + dialog.FileName);
-            //    }
-            //}
+            
 
 
         }
@@ -347,23 +321,15 @@ namespace BatchRename
                         {
                             Files.Add(MyFileInfo);
                         }
-                        //var fullPath = file;
-                        //var info = new FileInfo(fullPath);
-                        //var shortName = info.Name;
-                        //_listFiles.Add(new MyFileInfo() { FullPath = fullPath, ShortPath = shortName });
                     }
-                    _dropFileArea.Visibility = "Hidden";
+                    if(Files.Count > 0)
+                    {
+                        _dropFileArea.Visibility = "Hidden";
+                    }
+                   
                 }
             }
-            //else if (FilesTable.ItemsSource == _listFolders)
-            //{
-            //    CommonOpenFileDialog dialog = new CommonOpenFileDialog();
-            //    dialog.IsFolderPicker = true;
-            //    if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
-            //    {
-            //        MessageBox.Show("You selected: " + dialog.FileName);
-            //    }
-            //}
+
         }
 
         private void DeleteRecordBtn_Click(object sender, RoutedEventArgs e)
@@ -406,7 +372,6 @@ namespace BatchRename
 
                 }
             }
-
         }
 
         private void DownMultiButton_Click(object sender, RoutedEventArgs e)
@@ -478,7 +443,7 @@ namespace BatchRename
                     }
                     catch
                     {
-                        file.Status = "File doesn't exist in this path";
+                        file.Status = "Failed";
                     }
                 }
             }
@@ -500,9 +465,46 @@ namespace BatchRename
                     }
                     catch
                     {
-                        folder.Status = "Folder doesn't exist in this path";
+                        folder.Status = "Failed";
                     }
                 }
+            }
+        }
+
+        private void PreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            Update_Preview();
+        }
+
+        private void AddByFolder_Click(object sender, RoutedEventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                string[] ListFiles = Directory.GetFiles($"{dialog.FileName}", "*.*", SearchOption.AllDirectories);
+                foreach (string File in ListFiles)
+                {
+                    MyFolder MyFileInfo = new MyFolder(File);
+                    if (!myHelper.isExistInList(Files, MyFileInfo))
+                    {
+                        Files.Add(MyFileInfo);
+                    }
+                }
+            }
+            if(Files.Count > 0)
+            {
+                _dropFileArea.Visibility = "Hidden";
+            }
+           
+        }
+
+        private void SavePresetButton_Click(object sender, RoutedEventArgs e)
+        {
+            InputDialog inputDialog = new InputDialog("Please enter your name:", "John Doe");
+            if (inputDialog.ShowDialog() == true)
+            {
+                //lblName.Text = inputDialog.Answer;
             }
         }
     }

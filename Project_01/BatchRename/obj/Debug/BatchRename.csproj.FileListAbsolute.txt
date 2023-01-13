@@ -389,3 +389,5 @@ D:\Github\batchRename\Project_01\BatchRename\obj\Debug\BatchRename.exe
 D:\Github\batchRename\Project_01\BatchRename\obj\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\BatchRename\bin\Debug\Newtonsoft.Json.dll
 D:\Github\batchRename\Project_01\BatchRename\bin\Debug\Newtonsoft.Json.xml
+D:\Github\batchRename\Project_01\BatchRename\obj\Debug\InputDialog.g.cs
+D:\Github\batchRename\Project_01\BatchRename\obj\Debug\InputDialog.baml

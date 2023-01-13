@@ -1,7 +1,7 @@
 ﻿RemoveAllSpace
 
 
-winexe
+library
 C#
 .cs
 D:\Github\batchRename\Project_01\RemoveAllSpace\obj\Debug\
@@ -9,12 +9,12 @@ RemoveAllSpace
 none
 false
 DEBUG;TRACE
-D:\Github\batchRename\Project_01\RemoveAllSpace\App.xaml
-1219584333
 
-6-793535042
-15-131857280
-MainWindow.xaml;
+11016706045
+
+6-1693198280
+16-648460502
+RemoveAllSpaceWindow.xaml;
 
 True
 

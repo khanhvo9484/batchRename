@@ -20,3 +20,9 @@ D:\Github\batchRename\Project_01\AddCounter\obj\Debug\AddCounter.csproj.Fody.Run
 D:\Github\batchRename\Project_01\AddCounter\obj\Debug\AddCounter.csproj.CopyComplete
 D:\Github\batchRename\Project_01\AddCounter\obj\Debug\AddCounter.dll
 D:\Github\batchRename\Project_01\AddCounter\obj\Debug\AddCounter.pdb
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Microsoft.WindowsAPICodePack.dll
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Microsoft.WindowsAPICodePack.xml

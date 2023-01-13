@@ -1,7 +1,7 @@
 ﻿ConvertPascalCase
 
 
-winexe
+library
 C#
 .cs
 D:\Github\batchRename\Project_01\ConvertPascalCase\obj\Debug\
@@ -16,5 +16,5 @@ DEBUG;TRACE
 16-648460502
 ConvertPascalCaseWindow.xaml;
 
-True
+False
 

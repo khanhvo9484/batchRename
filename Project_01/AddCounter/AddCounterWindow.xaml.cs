@@ -69,8 +69,7 @@ namespace AddCounter
 
             }
             this._pressApply = true;
-
-            status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
+            NotifyText.Text = "Added";
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -78,7 +77,7 @@ namespace AddCounter
             this.DataContext = this;
             if (Step_input.Text == "0")
             {
-                status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
+                
 
             }
         }
@@ -94,16 +93,7 @@ namespace AddCounter
         {
             if (Start_input.Text != "")
             {
-                if (int.Parse(Start_input.Text) != this.rule._start)
-                {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
-
-                }
-                else
-                {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
-
-                }
+              
             }
 
         }
@@ -114,12 +104,12 @@ namespace AddCounter
             {
                 if (int.Parse(Step_input.Text) != this.rule._step)
                 {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
+                    
 
                 }
                 else
                 {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
+                    
 
                 }
             }

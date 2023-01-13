@@ -1,7 +1,7 @@
 ﻿LowerCase
 
 
-winexe
+library
 C#
 .cs
 D:\Github\batchRename\Project_01\LowerCase\obj\Debug\
@@ -9,12 +9,12 @@ LowerCase
 none
 false
 DEBUG;TRACE
-D:\Github\batchRename\Project_01\LowerCase\App.xaml
-1219584333
 
-6-793535042
-15-131857280
-MainWindow.xaml;
+1821523737
 
-True
+61688020184
+16-648460502
+LowerCaseWindow.xaml;
+
+False
 
