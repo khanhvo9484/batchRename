@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,9 +20,12 @@ namespace ChangeExtension
     /// <summary>
     /// Interaction logic for ChangeExtensionWindow.xaml
     /// </summary>
-    public partial class ChangeExtensionWindow : UserControl
+    public partial class ChangeExtensionWindow : UserControl, INotifyPropertyChanged
     {
         ChangeExtensionRule rule;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string _NewExt { get; set; } = "";
         public ChangeExtensionWindow(ChangeExtensionRule rule)
         {
@@ -39,7 +43,7 @@ namespace ChangeExtension
             this.DataContext = this;
             if (extension_input.Text == "")
             {
-                status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
+                //status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
 
             }
         }
@@ -61,10 +65,10 @@ namespace ChangeExtension
                 DictSetup.Add("NewExt", this.rule._NewExt);
                 this.rule.Setup(DictSetup, null);
 
-                status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
+                //status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
 
             }
-
+            NotifyText.Text = "Added";
         }
 
         private void prefixInput_TextChanged(object sender, TextChangedEventArgs e)
@@ -73,12 +77,12 @@ namespace ChangeExtension
             {
                 if (extension_input.Text != this.rule._NewExt)
                 {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
+                    //status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
 
                 }
                 else
                 {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
+                    //status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
 
                 }
             }
