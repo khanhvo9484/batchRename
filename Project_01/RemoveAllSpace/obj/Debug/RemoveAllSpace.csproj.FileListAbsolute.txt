@@ -1,0 +1,4 @@
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveAllSpace\obj\Debug\RemoveAllSpace.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveAllSpace\obj\Debug\RemoveAllSpaceWindow.g.cs
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveAllSpace\obj\Debug\RemoveAllSpace_MarkupCompile.cache
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveAllSpace\obj\Debug\RemoveAllSpace_MarkupCompile.lref

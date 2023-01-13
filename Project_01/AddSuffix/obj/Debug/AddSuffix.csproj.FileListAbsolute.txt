@@ -1,0 +1,6 @@
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.csproj.SuggestedBindingRedirects.cache
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.Properties.Resources.resources
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.csproj.GenerateResource.cache
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.csproj.CoreCompileInputs.cache
