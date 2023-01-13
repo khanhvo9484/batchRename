@@ -19,14 +19,28 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
+using System.IO;
 
 namespace BatchRename
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    /// 
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        public int totalRules { get; set; } = 0;
+        List<IRule> RuleList = new List<IRule>();
+        ObservableCollection<IRule> UserRuleList = new ObservableCollection<IRule>();
+
+        BindingList<ISystemItem> Files = new BindingList<ISystemItem>();
+        BindingList<ISystemItem> Folders = new BindingList<ISystemItem>();
+        BindingList<ISystemItem> CurrentBatch = null;
+
+        BindingList<String> NameRules = new BindingList<String>();
+        ObservableCollection<Preset> Presets = new ObservableCollection<Preset>();
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public class SetVisibility : INotifyPropertyChanged, ICloneable
         {
             public string Visibility { get; set; } = "Visible";
@@ -39,10 +53,17 @@ namespace BatchRename
         SetVisibility _dropFileArea = new SetVisibility();
         public MainWindow()
         {
+            //CreateDLLFolder();
             InitializeComponent();
-            var a = AppDomain.CurrentDomain.BaseDirectory+$"Plugins";
-            var pluginFiles=Directory.GetFiles(a,"*.dll");
-            foreach(var file in pluginFiles)
+            totalRules = RuleFactory.Instance().countRules();
+            for (int i = 0; i < totalRules; i++)
+            {
+                RuleList.Add(RuleFactory.Instance().Create(i));
+                NameRules.Add(RuleList[i].GetName());
+            }
+            var a = AppDomain.CurrentDomain.BaseDirectory + $"Plugins";
+            var pluginFiles = Directory.GetFiles(a, "*.dll");
+            foreach (var file in pluginFiles)
             {
                 var asm = Assembly.LoadFile(file);
                 //MessageBox.Show(asm.ToString());
@@ -150,5 +171,54 @@ namespace BatchRename
         {
             
         }
+        private void CreateDLLFolder()
+        {
+            string exePath = Assembly.GetExecutingAssembly().Location;
+            string folderPath = System.IO.Path.GetDirectoryName(exePath);
+            folderPath += @"\Plugins";
+            DirectoryInfo folder = new DirectoryInfo(folderPath);
+            if (!folder.Exists)
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+        }
+
+    }
+
+    public class WorkFlow
+    {
+        public string isActive { get; set; }
+        public string rulesList { get; set; }
+        public string filesList { get; set; }
+        public string foldersList { get; set; }
+    }
+    public class FileItem
+    {
+        public string Name;
+        public string Image;
+        public string fileExtention;
+        public string Path;
+        public string newName;
+        public string status;
+    }
+    public class FolderItem
+    {
+        public string Name;
+        public string Image;
+        public string Path;
+        public string newName;
+        public string status;
+    }
+    public class rulesFromPreset
+    {
+        public string name { get; set; }
+        public string _arg1 { get; set; }
+        public string _arg2 { get; set; }
+    }
+    public class Preset
+    {
+        public string PresetName { get; set; }
+        public string PresetPath { get; set; }
     }
 }
