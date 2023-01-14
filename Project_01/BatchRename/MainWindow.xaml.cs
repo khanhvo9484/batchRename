@@ -93,18 +93,35 @@ namespace BatchRename
             }
             else
             {
+
                 CommonOpenFileDialog dialog = new CommonOpenFileDialog();
                 dialog.IsFolderPicker = true;
+
+
+                dialog.AddToMostRecentlyUsedList = false;
+                dialog.AllowNonFileSystemItems = false;
+                dialog.Multiselect = true;
+
+
                 if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
                 {
-                    MyFolder MyFileInfo= new MyFolder(dialog.FileName);
-                    if(!myHelper.isExistInList(Folders, MyFileInfo))
+                    var files = dialog.FileNames;
+                    foreach(string file in files)
                     {
-                        Folders.Add(MyFileInfo);
+                        MyFolder MyFileInfo = new MyFolder(file);
+                        if (!myHelper.isExistInList(Folders, MyFileInfo))
+                        {
+                            Folders.Add(MyFileInfo);
+                        }
                     }
-                    
+                    if(Folders.Count > 0)
+                    {
+                        _dropFileArea.Visibility = "Hidden";
+                    }
+
                     //MessageBox.Show("You selected: " + dialog.FileName);
                 }
+                
             }
 
         }
