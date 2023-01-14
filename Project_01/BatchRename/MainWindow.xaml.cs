@@ -19,9 +19,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Reflection;
-using System.IO;
 using Newtonsoft.Json;
+using RestoreWindowPlace;
 //using System.Windows.Forms;
+
 
 namespace BatchRename
 {
@@ -29,6 +30,7 @@ namespace BatchRename
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
+    
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public int totalRules { get; set; } = 0;
@@ -72,6 +74,8 @@ namespace BatchRename
             rulesSideBar.ItemsSource = UserRuleList;
             FilesTable.ItemsSource = Files;
             presetCombobox.ItemsSource = Presets;
+
+            ((App)Application.Current).WindowPlace.Register(this);
 
         }
         
@@ -297,7 +301,6 @@ namespace BatchRename
         {
             Button b = (Button)sender;
             IRule rule = (IRule)b.CommandParameter;
-            string value = b.CommandParameter.ToString();
             UserRuleList.Remove(rule);
             Update_Preview();
         }
@@ -428,50 +431,71 @@ namespace BatchRename
 
         private void StartBatchBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (MyFile file in Files)
+            if (Type == "file")
             {
-                if (file.NewName != null)
+                if (Files.Count == 0)
                 {
-                    string newPath = file.Path.Substring(0, file.Path.LastIndexOf('\\') + 1) + file.NewName;
-                    try
+                    MessageBox.Show("List of files is empty, please insert one");
+                    return;
+                }
+                foreach (MyFile file in Files)
+                {
+                    if (file.NewName != null)
                     {
-                        if (file.Path == newPath)
+                        string newPath = file.Path.Substring(0, file.Path.LastIndexOf('\\') + 1) + file.NewName;
+                        try
                         {
-                            continue;
+                            if (file.Path == newPath)
+                            {
+                                continue;
+                            }
+                            System.IO.File.Move(file.Path, newPath);
+                            file.Path = newPath;
+                            file.Name = file.NewName;
+                            file.Status = "Successful";
                         }
-                        System.IO.File.Move(file.Path, newPath);
-                        file.Path = newPath;
-                        file.Name = file.NewName;
-                        file.Status = "Successful";
-                    }
-                    catch
-                    {
-                        file.Status = "Failed";
+                        catch
+                        {
+                            file.Status = "Failed";
+                        }
                     }
                 }
+                MessageBox.Show("Batching files has been done","Notification");
+                return;
             }
-            foreach (MyFolder folder in Folders)
+            else
             {
-                if (folder.NewName != null)
+                if (Folders.Count == 0)
                 {
-                    string newPath = folder.Path.Substring(0, folder.Path.LastIndexOf('\\') + 1) + folder.NewName;
-                    try
+                    MessageBox.Show("List of folders is empty, please insert one");
+                    return;
+                }
+                foreach (MyFolder folder in Folders)
+                {
+                    if (folder.NewName != null)
                     {
-                        if (folder.Path == newPath)
+                        string newPath = folder.Path.Substring(0, folder.Path.LastIndexOf('\\') + 1) + folder.NewName;
+                        try
                         {
-                            continue;
+                            if (folder.Path == newPath)
+                            {
+                                continue;
+                            }
+                            Directory.Move(folder.Path, newPath);
+                            folder.Path = newPath;
+                            folder.Name = folder.NewName;
+                            folder.Status = "Successful";
                         }
-                        Directory.Move(folder.Path, newPath);
-                        folder.Path = newPath;
-                        folder.Name = folder.NewName;
-                        folder.Status = "Successful";
-                    }
-                    catch
-                    {
-                        folder.Status = "Failed";
+                        catch
+                        {
+                            folder.Status = "Failed";
+                        }
                     }
                 }
+                MessageBox.Show("Batching folders has been done", "Notification");
+                return;
             }
+            
         }
 
         private void PreviewButton_Click(object sender, RoutedEventArgs e)
@@ -523,7 +547,6 @@ namespace BatchRename
                 List<rulesFromPreset> items = JsonConvert.DeserializeObject<List<rulesFromPreset>>(json);
                 foreach (rulesFromPreset rule in items)
                 {
-                    //MessageBox.Show($"Name: {rule.name}, arg1: {rule._arg1}, arg2: {rule._arg2}");
                     for (int i = 0; i < RuleList.Count(); i++)
                     {
                         if (RuleList[i].Name == rule.name)
@@ -606,6 +629,7 @@ namespace BatchRename
             {
                 loadRules(Presets[index].PresetPath);
             }
+            presetCombobox.SelectedValue = "";
             //var presetName = ((sender as Button).Content as TextBlock).Text;
             //for (int i = 0; i < Presets.Count(); i++)
             //{
@@ -616,6 +640,166 @@ namespace BatchRename
             //        break;
             //    }
             //}
+        }
+
+        private void BrowsePresetButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Multiselect = false;
+            openFileDialog.Filter = "Json files (*.json)|*.json";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string[] files = openFileDialog.FileNames;
+                try
+                {
+                    //MessageBox.Show(files[0]);
+                    
+                    loadRules(files[0]);
+                    var fileName= System.IO.Path.GetFileName(files[0]);
+                    if (System.IO.File.Exists($@"Preset\{fileName}")){
+                        MessageBox.Show("Preset existed", "Load preset");
+                        return;
+                    }
+                    File.Copy($@"{files[0]}", $@"Preset\{fileName}");
+                    loadAllPreset();
+                    MessageBox.Show("Preset loaded", "Load preset");
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong!", "Load preset");
+                }
+            }
+        }
+
+        private void ClearRuleButton_Click(object sender, RoutedEventArgs e)
+        {
+            UserRuleList.Clear();
+        }
+
+        private void ImportRuleButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            DirectoryInfo folder = new DirectoryInfo(@"Plugins Library\");
+            if (!folder.Exists)
+            {
+                Directory.CreateDirectory(@"Plugins Library\");
+            }
+            openFileDialog.InitialDirectory = @"Plugins Library\";
+            openFileDialog.Filter = "DLL files only (*.dll)|*.dll";
+
+            string exePath = Assembly.GetExecutingAssembly().Location;
+            string path = System.IO.Path.GetDirectoryName(exePath);
+            path = path + @"\Plugins Library";
+
+            if (Directory.Exists(path))
+            {
+                //Directory.CreateDirectory(path);
+                openFileDialog.InitialDirectory = path;
+                openFileDialog.Multiselect = true;
+
+                Dictionary<string, string> state = new Dictionary<string, string>();
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string[] files = openFileDialog.FileNames;
+                    //bool check = true;
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        FileInfo myfile = new FileInfo(files[i]);
+                        string nameRule = myfile.Name;
+                        int result = RuleFactory.Instance().addRuleFromDll(files[i]);
+                        if (result == 1)
+                        {
+
+                            totalRules = RuleFactory.Instance().countRules();
+
+                            state.Add(nameRule, "Successful");
+
+
+
+                            RuleList = new List<IRule>();
+                            NameRules = new BindingList<string>();
+                            for (int j = 0; j < totalRules; j++)
+                            {
+                                RuleList.Add(RuleFactory.Instance().Create(j));
+                                NameRules.Add(RuleList[j].Name);
+                            }
+                            ruleCombobox.ItemsSource = NameRules;
+
+                        }
+                        else if (result == 0)
+                        {
+                            state.Add(nameRule, "Failed");
+                        }
+                        else
+                        {
+                            state.Add(nameRule, "File exists");
+                        }
+
+                    }
+
+                    string str = "";
+                    foreach (var item in state)
+                    {
+                        str = str + item.Key + " - " + item.Value + '\n';
+                    }
+                    MessageBoxResult notify = MessageBox.Show(str, "Notify", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
+                }
+            }
+            else
+            {
+                Dictionary<string, string> state = new Dictionary<string, string>();
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    string[] files = openFileDialog.FileNames;
+                    //bool check = true;
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        FileInfo myfile = new FileInfo(files[i]);
+                        string nameRule = myfile.Name;
+                        int result = RuleFactory.Instance().addRuleFromDll(files[i]);
+                        if (result == 1)
+                        {
+
+                            totalRules = RuleFactory.Instance().countRules();
+
+                            state.Add(nameRule, "Successfull");
+
+
+
+                            RuleList = new List<IRule>();
+                            NameRules = new BindingList<string>();
+                            for (int j = 0; j < totalRules; j++)
+                            {
+                                RuleList.Add(RuleFactory.Instance().Create(j));
+                                NameRules.Add(RuleList[j].Name);
+                            }
+                            ruleCombobox.ItemsSource = NameRules;
+
+                        }
+                        else if (result == 0)
+                        {
+                            state.Add(nameRule, "Failed");
+                        }
+                        else
+                        {
+                            state.Add(nameRule, "File existed");
+                        }
+
+                    }
+
+                    string str = "";
+                    foreach (var item in state)
+                    {
+                        str = str + item.Key + " - " + item.Value + '\n';
+                    }
+                    MessageBoxResult notify = MessageBox.Show(str, "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                }
+            }
         }
     }
 

@@ -26,13 +26,12 @@ namespace AddCounter
         public bool _pressApply { get; set; } = false;
         public string _start { get; set; } = "";
         public string _step { get; set; } = "";
-        //public string _ka { get; set; } = "hahahka";
 
 
         public static readonly RoutedEvent ClickApplyEvent = EventManager.RegisterRoutedEvent(
-        "ClickAplly", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(AddCounterWindow));
+        "ClickApply", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(AddCounterWindow));
 
-        public event RoutedEventHandler ClickAplly;
+        public event RoutedEventHandler ClickApply;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public AddCounterWindow(AddCounterRule rule)
@@ -51,9 +50,9 @@ namespace AddCounter
         }
         private void Apply_button_click(object sender, RoutedEventArgs e)
         {
-            if (ClickAplly != null)
+            if (ClickApply != null)
             {
-                ClickAplly(this, e);
+                ClickApply(this, e);
             }
             Dictionary<string, string> DictSetup = new Dictionary<string, string>();
             List<string> ListSetup = new List<string>();
@@ -73,7 +72,7 @@ namespace AddCounter
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.DataContext = rule;
+ 
             this.DataContext = this;
             if (Step_input.Text == "0")
             {
@@ -87,7 +86,6 @@ namespace AddCounter
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        //this.rule.setup(DictSetup, null);
 
         private void start_text_change(object sender, TextChangedEventArgs e)
         {
@@ -105,11 +103,9 @@ namespace AddCounter
                 if (int.Parse(Step_input.Text) != this.rule._step)
                 {
                     
-
                 }
                 else
-                {
-                    
+                {     
 
                 }
             }

@@ -20,8 +20,13 @@ namespace RemoveLRSpace
     /// </summary>
     public partial class RemoveLRSpaceWindow : UserControl
     {
-        public RemoveLRSpaceWindow()
+        RemoveLRSpaceRule rule;
+        public RemoveLRSpaceWindow(RemoveLRSpaceRule rule)
         {
+            this.rule = rule;
+            this.rule.Setup(null, null);
+            this.rule._arg1 = "";
+            this.rule._arg2 = "";
             InitializeComponent();
         }
     }
