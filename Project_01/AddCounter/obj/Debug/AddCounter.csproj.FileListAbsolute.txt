@@ -2,7 +2,6 @@ D:\Github\batchRename\Project_01\AddCounter\bin\Debug\AddCounter.dll
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\AddCounter.pdb
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\BatchRename.exe
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Newtonsoft.Json.dll
-D:\Github\batchRename\Project_01\AddCounter\bin\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\BatchRename.exe.config
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\Newtonsoft.Json.xml
 D:\Github\batchRename\Project_01\AddCounter\obj\Debug\AddCounter.csproj.AssemblyReference.cache
@@ -58,3 +57,4 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddCounter\bin\Debug\Rest
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.xml
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.dll
 D:\Github\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.xml
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\BatchRename.pdb

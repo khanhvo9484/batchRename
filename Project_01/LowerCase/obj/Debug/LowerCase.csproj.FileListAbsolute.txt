@@ -35,7 +35,6 @@ D:\Github\batchRename\Project_01\LowerCase\bin\Debug\Newtonsoft.Json.dll
 D:\Github\batchRename\Project_01\LowerCase\bin\Debug\RestoreWindowPlace.Net45.dll
 D:\Github\batchRename\Project_01\LowerCase\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\Github\batchRename\Project_01\LowerCase\bin\Debug\Microsoft.WindowsAPICodePack.dll
-D:\Github\batchRename\Project_01\LowerCase\bin\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\LowerCase\bin\Debug\BatchRename.exe.config
 D:\Github\batchRename\Project_01\LowerCase\bin\Debug\Newtonsoft.Json.xml
 D:\Github\batchRename\Project_01\LowerCase\bin\Debug\RestoreWindowPlace.Net45.xml
@@ -58,3 +57,4 @@ D:\Github\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.csproj.Fody.Runti
 D:\Github\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.csproj.CopyComplete
 D:\Github\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.dll
 D:\Github\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.pdb
+D:\Github\batchRename\Project_01\LowerCase\bin\Debug\BatchRename.pdb

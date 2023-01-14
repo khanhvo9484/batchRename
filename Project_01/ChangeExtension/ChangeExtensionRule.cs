@@ -74,27 +74,35 @@ namespace ChangeExtension
         }
         public string Rename(string oldname)
         {
-            if (!Helper.Instance().isFile(oldname))
+            try
             {
-                //Folder
+                if (!Helper.Instance().isFile(oldname))
+                {
+                    //Folder
+                    return oldname;
+                }
+                else
+                {
+                    //File
+                    int lastIndex;
+                    lastIndex = oldname.LastIndexOf('.');
+                    string[] resultList = new string[2];
+                    if (lastIndex != -1)
+                    {
+                        resultList[0] = oldname.Substring(0, lastIndex); // "My. name. is Bond"
+                                                                         // "_James Bond!"
+                    }
+
+                    resultList[1] = _NewExt;
+                    string result = string.Join(".", resultList);
+                    return result;
+                }
+            }
+            catch
+            {
                 return oldname;
             }
-            else
-            {
-                //File
-                int lastIndex;
-                lastIndex = oldname.LastIndexOf('.');
-                string[] resultList = new string[2];
-                if (lastIndex != -1)
-                {
-                    resultList[0]=oldname.Substring(0, lastIndex); // "My. name. is Bond"
-                   // "_James Bond!"
-                }
- 
-                resultList[1] = _NewExt;
-                string result = string.Join(".", resultList);
-                return result;
-            }
+            
         }
 
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)

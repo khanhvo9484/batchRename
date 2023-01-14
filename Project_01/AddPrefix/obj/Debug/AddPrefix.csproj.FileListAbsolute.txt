@@ -8,7 +8,6 @@ D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\AddPrefix.pdb
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\BatchRename.exe
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Newtonsoft.Json.Bson.dll
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Newtonsoft.Json.dll
-D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\BatchRename.exe.config
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Newtonsoft.Json.xml
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Newtonsoft.Json.Bson.pdb
@@ -66,3 +65,4 @@ D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePac
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.pdb
 D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.xml
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\BatchRename.pdb

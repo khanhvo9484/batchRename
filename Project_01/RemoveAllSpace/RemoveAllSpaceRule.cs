@@ -61,24 +61,32 @@ namespace RemoveAllSpace
         }
         public string Rename(string oldname)
         {
-            if (!Helper.Instance().isFile(oldname))
+            try
             {
-                //FOLDER
-                string strResult = oldname;
-                string pattern = @"\s";
-                strResult = Regex.Replace(strResult, pattern, "");
-                return strResult;
+                if (!Helper.Instance().isFile(oldname))
+                {
+                    //FOLDER
+                    string strResult = oldname;
+                    string pattern = @"\s";
+                    strResult = Regex.Replace(strResult, pattern, "");
+                    return strResult;
+                }
+                else
+                {
+                    //FILE
+                    string[] filenameList = oldname.Split('.');
+                    string strResult = filenameList[0];
+                    string pattern = @"\s";
+                    strResult = Regex.Replace(strResult, pattern, "");
+                    filenameList[0] = strResult;
+                    return string.Join(".", filenameList);
+                }
             }
-            else
+            catch
             {
-                //FILE
-                string[] filenameList = oldname.Split('.');
-                string strResult = filenameList[0];
-                string pattern = @"\s";
-                strResult = Regex.Replace(strResult, pattern, "");
-                filenameList[0] = strResult;
-                return string.Join(".", filenameList);
+                return oldname;
             }
+           
         }
 
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)

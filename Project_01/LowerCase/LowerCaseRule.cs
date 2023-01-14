@@ -59,18 +59,26 @@ namespace LowerCase
         }
         public string Rename(string oldname)
         {
-            if (!Helper.Instance().isFile(oldname))
+            try
             {
-                //FOLDER
-                return oldname.ToLower();
+                if (!Helper.Instance().isFile(oldname))
+                {
+                    //FOLDER
+                    return oldname.ToLower();
+                }
+                else
+                {
+                    //FILE
+                    string[] filenameList = oldname.Split('.');
+                    filenameList[0] = filenameList[0].ToLower();
+                    return string.Join(".", filenameList);
+                }
             }
-            else
+            catch
             {
-                //FILE
-                string[] filenameList = oldname.Split('.');
-                filenameList[0] = filenameList[0].ToLower();
-                return string.Join(".", filenameList);
+                return oldname;
             }
+            
         }
 
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)

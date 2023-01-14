@@ -66,14 +66,22 @@ namespace AddPrefix
         }
         public string Rename(string oldname)
         {
-            if (Helper.Instance().hasPrefix(oldname, _Prefix))
+            try
+            {
+                if (Helper.Instance().hasPrefix(oldname, _Prefix))
+                {
+                    return oldname;
+                }
+                else
+                {
+                    return _Prefix + " " + oldname;
+                }
+            }
+            catch
             {
                 return oldname;
             }
-            else
-            {
-                return _Prefix + " " + oldname;
-            }
+            
         }
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)
         {

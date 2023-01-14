@@ -95,8 +95,8 @@
                         HorizontalAlignment="Left"
                         IsEditable="True"
                         IsReadOnly="True"
-         
-                        SelectionChanged="presetCombobox_SelectionChanged"
+                        DropDownClosed="presetCombobox_DropDownClosed"
+                      
                         Text="Select Preset">
                         
 
@@ -145,8 +145,10 @@
                         HorizontalAlignment="Left"
                         IsEditable="True"
                         IsReadOnly="True"
-                        SelectionChanged="ruleCombobox_SelectionChanged"
-                        Text="Select Rule" />
+                        DropDownClosed="ruleCombobox_DropDownClosed"
+                        Text="Select Rule" >
+                        
+                    </ComboBox>
                 </StackPanel>
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                     <CheckBox

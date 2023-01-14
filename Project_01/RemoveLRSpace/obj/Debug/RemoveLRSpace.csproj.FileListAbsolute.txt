@@ -35,7 +35,6 @@ D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\Newtonsoft.Json.dll
 D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\RestoreWindowPlace.Net45.dll
 D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\Microsoft.WindowsAPICodePack.dll
-D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\BatchRename.exe.config
 D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\Newtonsoft.Json.xml
 D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\RestoreWindowPlace.Net45.xml
@@ -58,3 +57,4 @@ D:\Github\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.csproj.Fo
 D:\Github\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.csproj.CopyComplete
 D:\Github\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.dll
 D:\Github\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.pdb
+D:\Github\batchRename\Project_01\RemoveLRSpace\bin\Debug\BatchRename.pdb

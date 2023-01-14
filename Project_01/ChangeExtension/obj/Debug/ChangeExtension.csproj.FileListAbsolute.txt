@@ -35,7 +35,6 @@ D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\Newtonsoft.Json.dll
 D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\RestoreWindowPlace.Net45.dll
 D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\Microsoft.WindowsAPICodePack.dll
-D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\BatchRename.exe.config
 D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\Newtonsoft.Json.xml
 D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\RestoreWindowPlace.Net45.xml
@@ -58,3 +57,4 @@ D:\Github\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.cspro
 D:\Github\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.csproj.CopyComplete
 D:\Github\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.dll
 D:\Github\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.pdb
+D:\Github\batchRename\Project_01\ChangeExtension\bin\Debug\BatchRename.pdb

@@ -95,6 +95,8 @@ namespace AddCounter
 
             public string Rename(string oldname)
             {
+            try
+            {
                 if (!Helper.Instance().isFile(oldname))
                 {
 
@@ -117,6 +119,12 @@ namespace AddCounter
                     _start += _step;
                     return result;
                 }
+            }
+            catch
+            {
+                return oldname;
+            }
+               
             }
 
             public void Setup(Dictionary<string, string> agrs, List<string> arrchars)

@@ -250,14 +250,6 @@ namespace BatchRename
 
         }
 
-        private void ruleCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = ruleCombobox.SelectedIndex;
-            if (index != -1)
-            {
-                UserRuleList.Add(RuleList[index].Clone());
-            }
-        }
 
         private void checkAllRules_Click(object sender, RoutedEventArgs e)
         {
@@ -539,7 +531,7 @@ namespace BatchRename
                 string[] ListFiles = Directory.GetFiles($"{dialog.FileName}", "*.*", SearchOption.AllDirectories);
                 foreach (string File in ListFiles)
                 {
-                    MyFolder MyFileInfo = new MyFolder(File);
+                    MyFile MyFileInfo = new MyFile(File);
                     if (!myHelper.isExistInList(Files, MyFileInfo))
                     {
                         Files.Add(MyFileInfo);
@@ -652,23 +644,7 @@ namespace BatchRename
         {
             
         }
-        private void presetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var index=presetCombobox.SelectedIndex;
-            var presetName=presetCombobox.SelectedItem.ToString();
-            if(index != -1)
-            {
-                foreach(Preset preset in Presets)
-                {
-                    if(preset.PresetName == presetName)
-                    {
-                        loadRules(preset.PresetPath);
-                    }
-                }
-                
-            }
-  
-        }
+
 
         private void BrowsePresetButton_Click(object sender, RoutedEventArgs e)
         {
@@ -870,6 +846,34 @@ namespace BatchRename
 
             }
 
+        }
+
+        private void ruleCombobox_DropDownClosed(object sender, EventArgs e)
+        {
+            if (ruleCombobox.SelectedItem == null) return;
+            int index = ruleCombobox.SelectedIndex;
+            if (index != -1)
+            {
+                UserRuleList.Add(RuleList[index].Clone());
+            }
+            //ruleCombobox.SelectedIndex = -1;
+        }
+
+        private void presetCombobox_DropDownClosed(object sender, EventArgs e)
+        {
+            if (presetCombobox.SelectedItem == null) return;
+            var index = presetCombobox.SelectedIndex;
+            var presetName = presetCombobox.SelectedItem.ToString();
+            if (index != -1)
+            {
+                foreach (Preset preset in Presets)
+                {
+                    if (preset.PresetName == presetName)
+                    {
+                        loadRules(preset.PresetPath);
+                    }
+                }
+            }
         }
     }
 

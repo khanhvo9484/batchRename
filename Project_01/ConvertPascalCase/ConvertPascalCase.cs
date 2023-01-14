@@ -70,16 +70,23 @@ namespace ConvertPascalCase
         }
         public string Rename(string oldname)
         {
-
-            Regex regex = new Regex(@"[ ]{2,}", RegexOptions.None);
-            var temp = regex.Replace(oldname, @" "); // "words with multiple spaces"
-            string[] tokens = temp.Split(new[] {" "} ,StringSplitOptions.None);
-            var newName = "";
-            foreach (string token in tokens)
+            try
             {
-                newName+=FirstLetterToUpper(token);
+                Regex regex = new Regex(@"[ ]{2,}", RegexOptions.None);
+                var temp = regex.Replace(oldname, @" "); // "words with multiple spaces"
+                string[] tokens = temp.Split(new[] { " " }, StringSplitOptions.None);
+                var newName = "";
+                foreach (string token in tokens)
+                {
+                    newName += FirstLetterToUpper(token);
+                }
+                return newName;
             }
-            return newName;
+            catch
+            {
+                return oldname;
+            }
+            
         }
 
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)

@@ -35,7 +35,6 @@ D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\Newtonsoft.Json.dll
 D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\RestoreWindowPlace.Net45.dll
 D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
 D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\Microsoft.WindowsAPICodePack.dll
-D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\BatchRename.exe.config
 D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\Newtonsoft.Json.xml
 D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\RestoreWindowPlace.Net45.xml
@@ -58,3 +57,4 @@ D:\Github\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.c
 D:\Github\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.csproj.CopyComplete
 D:\Github\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.dll
 D:\Github\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.pdb
+D:\Github\batchRename\Project_01\ConvertPascalCase\bin\Debug\BatchRename.pdb

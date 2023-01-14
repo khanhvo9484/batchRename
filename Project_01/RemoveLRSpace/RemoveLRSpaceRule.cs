@@ -58,16 +58,24 @@ namespace RemoveLRSpace
         }
         public string Rename(string oldname)
         {
-            if (!Helper.Instance().isFile(oldname))
+            try
             {
-                return oldname.Trim();
+                if (!Helper.Instance().isFile(oldname))
+                {
+                    return oldname.Trim();
+                }
+                else
+                {
+                    string[] filenameList = oldname.Split('.');
+                    filenameList[0] = filenameList[0].Trim();
+                    return string.Join(".", filenameList);
+                }
             }
-            else
+            catch
             {
-                string[] filenameList = oldname.Split('.');
-                filenameList[0] = filenameList[0].Trim();
-                return string.Join(".", filenameList);
+                return oldname;
             }
+            
         }
 
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)
