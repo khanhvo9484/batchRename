@@ -43,7 +43,6 @@ namespace AddSuffix
 
             if (Suffix_input.Text == "")
             {
-                //status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
 
             }
         }
@@ -62,7 +61,6 @@ namespace AddSuffix
                 this.rule._Suffix = Suffix_input.Text;
                 DictSetup.Add("Suffix", this.rule._Suffix);
                 this.rule.Setup(DictSetup, null);
-                //status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
 
             }
             NotifyText.Text = "Added";
@@ -74,12 +72,10 @@ namespace AddSuffix
             {
                 if (Suffix_input.Text != this.rule._Suffix)
                 {
-                    //status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
 
                 }
                 else
                 {
-                    //status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
 
                 }
             }

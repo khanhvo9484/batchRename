@@ -58,3 +58,11 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\obj\Debug\AddPr
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\obj\Debug\AddPrefix.pdb
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\bin\Debug\RestoreWindowPlace.Net45.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\bin\Debug\RestoreWindowPlace.Net45.xml
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\RestoreWindowPlace.Net45.dll
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.dll
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\RestoreWindowPlace.Net45.xml
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+D:\Github\batchRename\Project_01\AddPrefix\bin\Debug\Microsoft.WindowsAPICodePack.xml

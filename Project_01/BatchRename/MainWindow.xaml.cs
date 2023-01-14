@@ -42,7 +42,7 @@ namespace BatchRename
         Helper myHelper = Helper.Instance();
         BindingList<ISystemItem> Files = new BindingList<ISystemItem>();
         BindingList<ISystemItem> Folders = new BindingList<ISystemItem>();
-        BindingList<ISystemItem> CurrentBatch = null;
+
 
         BindingList<String> NameRules = new BindingList<String>();
         ObservableCollection<Preset> Presets = new ObservableCollection<Preset>();
@@ -74,7 +74,7 @@ namespace BatchRename
             rulesSideBar.ItemsSource = UserRuleList;
             FilesTable.ItemsSource = Files;
             presetCombobox.ItemsSource = Presets;
-
+            FileSwitch_Click(null, null);
             ((App)Application.Current).WindowPlace.Register(this);
 
         }
@@ -100,8 +100,6 @@ namespace BatchRename
                     //MessageBox.Show("You selected: " + dialog.FileName);
                 }
             }
-            
-
 
         }
 
@@ -442,9 +440,10 @@ namespace BatchRename
                 {
                     if (file.NewName != null)
                     {
-                        string newPath = file.Path.Substring(0, file.Path.LastIndexOf('\\') + 1) + file.NewName;
+                        
                         try
                         {
+                            string newPath = file.Path.Substring(0, file.Path.LastIndexOf('\\') + 1) + file.NewName;
                             if (file.Path == newPath)
                             {
                                 continue;
@@ -631,15 +630,7 @@ namespace BatchRename
             }
             presetCombobox.SelectedValue = "";
             //var presetName = ((sender as Button).Content as TextBlock).Text;
-            //for (int i = 0; i < Presets.Count(); i++)
-            //{
-            //    if (Presets[i].PresetName == presetName)
-            //    {
-            //        presetCombobox.SelectedIndex = i;
-            //        loadRules(Presets[i].PresetPath);
-            //        break;
-            //    }
-            //}
+
         }
 
         private void BrowsePresetButton_Click(object sender, RoutedEventArgs e)

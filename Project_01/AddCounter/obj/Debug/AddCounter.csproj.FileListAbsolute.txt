@@ -56,3 +56,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddCounter\obj\Debug\AddC
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddCounter\obj\Debug\AddCounter.pdb
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.xml
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.dll
+D:\Github\batchRename\Project_01\AddCounter\bin\Debug\RestoreWindowPlace.Net45.xml

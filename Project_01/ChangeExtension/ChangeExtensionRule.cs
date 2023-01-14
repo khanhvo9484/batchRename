@@ -82,9 +82,15 @@ namespace ChangeExtension
             else
             {
                 //File
-                string[] filenameList = oldname.Split('.');
+                int lastIndex;
+                lastIndex = oldname.LastIndexOf('.');
                 string[] resultList = new string[2];
-                resultList[0] = filenameList[0];
+                if (lastIndex != -1)
+                {
+                    resultList[0]=oldname.Substring(0, lastIndex); // "My. name. is Bond"
+                   // "_James Bond!"
+                }
+ 
                 resultList[1] = _NewExt;
                 string result = string.Join(".", resultList);
                 return result;

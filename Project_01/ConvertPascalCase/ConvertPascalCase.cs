@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace ConvertPascalCase
 {
@@ -57,12 +58,28 @@ namespace ConvertPascalCase
         {
             return this.name;
         }
+        public string FirstLetterToUpper(string str)
+        {
+            if (str == null)
+                return null;
+
+            if (str.Length > 1)
+                return char.ToUpper(str[0]) + str.Substring(1);
+
+            return str.ToUpper();
+        }
         public string Rename(string oldname)
         {
-            string Temp1 = oldname.Substring(0, 1);
-            string Temp2 = oldname.Substring(1);
-            Temp1 = Temp1.ToUpper();
-            return Temp1 + Temp2;
+
+            Regex regex = new Regex(@"[ ]{2,}", RegexOptions.None);
+            var temp = regex.Replace(oldname, @" "); // "words with multiple spaces"
+            string[] tokens = temp.Split(new[] {" "} ,StringSplitOptions.None);
+            var newName = "";
+            foreach (string token in tokens)
+            {
+                newName+=FirstLetterToUpper(token);
+            }
+            return newName;
         }
 
         public void Setup(Dictionary<string, string> agrs, List<string> arrchars)

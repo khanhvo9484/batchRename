@@ -10,7 +10,7 @@
     Width="1200"
     Height="800"
     Loaded="Window_Loaded"
-    mc:Ignorable="d" >
+    mc:Ignorable="d">
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -28,7 +28,10 @@
                 Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal">
 
-                    <Button x:Name="PreviewButton" Click="PreviewButton_Click" Style="{StaticResource HeaderButton}">
+                    <Button
+                        x:Name="PreviewButton"
+                        Click="PreviewButton_Click"
+                        Style="{StaticResource HeaderButton}">
                         <StackPanel Orientation="Horizontal">
                             <Image
                                 Height="20"
@@ -40,20 +43,22 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
-                    <Button Style="{StaticResource HeaderButton}"
-                            x:Name="ImportRuleButton" Click="ImportRuleButton_Click">
+                    <Button
+                        x:Name="ImportRuleButton"
+                        Click="ImportRuleButton_Click"
+                        Style="{StaticResource HeaderButton}">
                         <StackPanel Orientation="Horizontal">
                             <Image
                                 Height="20"
                                 Margin="5"
                                 Source="Icon/import.png" />
-                            <TextBlock VerticalAlignment="Center" Text="Import" />
+                            <TextBlock VerticalAlignment="Center" Text="Import New Rule" />
                         </StackPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
-                    <Button Style="{StaticResource HeaderButton}">
+                    <!--<Button Style="{StaticResource HeaderButton}">
                         <StackPanel Orientation="Horizontal">
                             <Image
                                 Height="20"
@@ -61,7 +66,7 @@
                                 Source="Icon/undo.png" />
                             <TextBlock VerticalAlignment="Center" Text="Undo" />
                         </StackPanel>
-                    </Button>
+                    </Button>-->
                 </StackPanel>
             </StackPanel>
             <StackPanel
@@ -88,51 +93,52 @@
                         Width="310"
                         HorizontalAlignment="Left"
                         IsEditable="True"
-                        Text="Select Preset" SelectionChanged="presetCombobox_SelectionChanged">
+                        SelectionChanged="presetCombobox_SelectionChanged"
+                        Text="Select Preset">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding PresetName}" />
                             </DataTemplate>
-                            
+
                         </ComboBox.ItemTemplate>
-                        
+
                     </ComboBox>
                     <Button
                         x:Name="SavePresetButton"
-                        Click="SavePresetButton_Click"
                         Margin="5,0,0,0"
                         Padding="5"
                         HorizontalAlignment="Right"
                         Background="#254e8f"
                         BorderThickness="0"
+                        Click="SavePresetButton_Click"
                         Cursor="Hand"
                         Foreground="White"
                         Style="{StaticResource Roboto}">
                         <iconPacks:PackIconEntypo
-                                    Height="10"
-                                    Margin="0,0,0,0"
-                                    Kind="Save" />
-                       
+                            Height="10"
+                            Margin="0,0,0,0"
+                            Kind="Save" />
+
                     </Button>
                     <Button
                         x:Name="BrowsePresetButton"
-                        Click="BrowsePresetButton_Click"
                         Margin="5,0,0,0"
                         Padding="5"
                         HorizontalAlignment="Right"
                         Background="#fcc962"
                         BorderThickness="0"
+                        Click="BrowsePresetButton_Click"
                         Cursor="Hand"
                         Foreground="White"
                         Style="{StaticResource Roboto}">
                         <iconPacks:PackIconEntypo
-                                    Height="10"
-                                    Margin="0,0,0,0"
-                                    Kind="Browser" />
+                            Height="10"
+                            Margin="0,0,0,0"
+                            Kind="Browser" />
 
                     </Button>
                 </StackPanel>
-                
+
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                     <ComboBox
                         x:Name="ruleCombobox"
@@ -157,10 +163,12 @@
                         Click="ClearRuleButton_Click"
                         Style="{StaticResource MoveButton}">
                         <iconPacks:PackIconModern
-                                    Height="10"
-                                    Margin="0,0,0,0"
-                                    Kind="Clear"  Background="#fc6272" Foreground="White"/>
-        
+                            Height="10"
+                            Margin="0,0,0,0"
+                            Background="#fc6272"
+                            Foreground="White"
+                            Kind="Clear" />
+
                     </Button>
 
                     <Button
@@ -209,216 +217,233 @@
                     </Button>
                 </StackPanel>
 
-                <StackPanel
-                    Height="700"
-                    Margin="0,10,0,0"
-                    Background="White">
-                    <ListView
-                        x:Name="rulesSideBar"
-                        Height="800"
-                        SelectionChanged="rulesSideBar_SelectionChanged"
-                        SelectionMode="Multiple">
+
+                <ListView
+                    x:Name="rulesSideBar"
+                    Height="600"
+                    Margin="0,15,0,0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    SelectionChanged="rulesSideBar_SelectionChanged"
+                    SelectionMode="Multiple">
 
 
-                        <ListView.Resources>
-                            <Style TargetType="GridViewColumnHeader">
-                                <Setter Property="Visibility" Value="Collapsed" />
-                            </Style>
-                            <DataTemplate x:Key="DefaultItemTemplate">
-                                <StackPanel
-                                    x:Name="RuleRow"
-                                    Width="370"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch">
-                                    <Grid Width="370" Height="30">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="5*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                         
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            Height="20"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            TextWrapping="Wrap"><Run FontSize="16" Text="{Binding Name}" /></TextBlock>
-                                        <CheckBox
-                            
-                                            Grid.Column="2"
-                                            Width="20"
-                                            Height="20"
-                                            Margin="0,5,0,0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Checked="Box_checked_click"
-                                            CommandParameter="{Binding}"
-                                            IsChecked="{Binding IsActive}"
-                                            Unchecked="Box_unchecked_click" />
-                                        <Button
-                                            x:Name="Remove_Rule_Button"
-                                            Grid.Column="4"
-                                            Width="20"
-                                            Padding="3,3,3,3"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            BorderThickness="0"
-                                            Click="Remove_Rule_Button_Click"
-                                            CommandParameter="{Binding}"
-                                            Cursor="Hand">
+                    <ListView.Resources>
+                        <Style TargetType="GridViewColumnHeader">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Style>
+                        <DataTemplate x:Key="DefaultItemTemplate">
+                            <StackPanel
+                                x:Name="RuleRow"
+                                Width="370"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                                <Grid Width="370" Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                    <Setter Property="Background" Value="#98e3fa"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="False">
+                                                    <Setter Property="Background" Value="#ffdbdb"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Height="20"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        TextWrapping="Wrap"><Run FontSize="16" Text="{Binding Name}" /></TextBlock>
+                                    <CheckBox
+                                        Grid.Column="2"
+                                        Width="20"
+                                        Height="20"
+                                        Margin="0,5,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Checked="Box_checked_click"
+                                        CommandParameter="{Binding}"
+                                        IsChecked="{Binding IsActive}"
+                                        Unchecked="Box_unchecked_click" />
+                                    <Button
+                                        x:Name="Remove_Rule_Button"
+                                        Grid.Column="4"
+                                        Width="20"
+                                        Padding="3,3,3,3"
+                                      
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="#fa5a5a"
+                                        BorderThickness="0"
+                                        Click="Remove_Rule_Button_Click"
+                                        CommandParameter="{Binding}"
+                                        Cursor="Hand">
+
+                                        <iconPacks:PackIconModern
+                                            Height="15" Foreground="White" 
+                                            Kind="Delete" HorizontalAlignment="Center"/>
+
+                                    </Button>
+
+                                </Grid>
+                                <UserControl
+                                    x:Name="ConfigurationUI"
+                                    MinWidth="200"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    Content="{Binding ConfigurationUI}" />
+                            </StackPanel>
+                        </DataTemplate>
+
+                        <DataTemplate x:Key="SelectedItemTemplate">
+                            <StackPanel
+                                x:Name="RuleRow"
+                                Width="370"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch">
+                                <Grid Width="370" Height="30">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
                                            
-                                            <Image Source="./Assets/Icons/Cross.png" />
-                                        </Button>
-                                        
-                                    </Grid>
-                                    <UserControl
-                                        x:Name="ConfigurationUI"
-                                        VerticalAlignment="Stretch"
-                                        HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Stretch"
-                                        MinWidth="200"
-                                        Content="{Binding ConfigurationUI}" />
-                                </StackPanel>
-                            </DataTemplate>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                    <Setter Property="Background" Value="#98e3fa"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="False">
+                                                    <Setter Property="Background" Value="#ffdbdb"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
+                                    <TextBlock
+                                        Grid.Column="0"
+                                        Height="20"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        TextWrapping="Wrap"><Run
+                                            FontSize="16"
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}" /></TextBlock>
+                                    <CheckBox
+                                        Grid.Column="2"
+                                        Width="20"
+                                        Height="20"
+                                        Margin="0,5,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Checked="Box_checked_click"
+                                        CommandParameter="{Binding}"
+                                        IsChecked="{Binding IsActive}"
+                                        Unchecked="Box_unchecked_click" />
+                                    <Button
+                                        x:Name="Remove_Rule_Button"
+                                        Grid.Column="4"
+                                        Width="20"
+                                        Padding="3,3,3,3"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Background="#fa5a5a"
+                                        BorderThickness="0"
+                                        Click="Remove_Rule_Button_Click"
+                                        CommandParameter="{Binding}"
+                                        Cursor="Hand">
+                                        <iconPacks:PackIconModern
+                                            Height="15" Foreground="White" 
+                                            Kind="Delete" HorizontalAlignment="Center"/>
+                                    </Button>
+                                </Grid>
+                                <UserControl
+                                  
+                                    Name="ConfigurationUI"
+                                    Height="auto"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"
+                                    Content="{Binding ConfigurationUI}" />
+                            </StackPanel>
+                        </DataTemplate>
 
-                            <DataTemplate x:Key="SelectedItemTemplate">
-                                <StackPanel
-                                    x:Name="RuleRow"
-                                    Width="370"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch">
-                                    <Grid Width="370" Height="30">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="5*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Image
-                                            Grid.Column="0"
-                                            Width="20"
-                                            Height="20"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Source="./Assets/Icons/Minus.png" />
-                                        <TextBlock
-                                            Grid.Column="0"
-                                            Height="20"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            TextWrapping="Wrap"><Run FontWeight="Bold" FontSize="16" Text="{Binding Name}" /></TextBlock>
-                                        <CheckBox
-                                            Grid.Column="2"
-                                            Width="20"
-                                            Height="20"
-                                            Margin="0,5,0,0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Checked="Box_checked_click"
-                                            CommandParameter="{Binding}"
-                                            IsChecked="{Binding IsActive}"
-                                            Unchecked="Box_unchecked_click" />
-                                        <Button
-                                            x:Name="Remove_Rule_Button"
-                                            Grid.Column="4"
-                                            Width="20"
-                                            Padding="3,3,3,3"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Background="Transparent"
-                                            BorderThickness="0"
-                                            Click="Remove_Rule_Button_Click"
-                                            CommandParameter="{Binding}"
-                                            Cursor="Hand">
-
-                                            <Image Source="./Assets/Icons/Cross.png" />
-                                        </Button>
-                                    </Grid>
-                                    <UserControl
-                                        Name="ConfigurationUI"
-                                        Height="auto"
-                                        VerticalAlignment="Stretch"
-                                        HorizontalContentAlignment="Stretch"
-                                        VerticalContentAlignment="Stretch"
-                                        Content="{Binding ConfigurationUI}" />
-                                </StackPanel>
-                            </DataTemplate>
-
-                        </ListView.Resources>
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
+                    </ListView.Resources>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
 
 
-                                <Setter Property="Height" Value="auto" />
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="Padding" Value="5" />
-                                <Setter Property="Margin" Value="0,0,0,0" />
-                                <Setter Property="MinHeight" Value="10" />
-                                <Setter Property="MaxHeight" Value="40" />
-                                <Setter Property="VerticalContentAlignment" Value="Top" />
-                                <Setter Property="ContentTemplate" Value="{StaticResource DefaultItemTemplate}" />
-                                <Setter Property="Background" Value="White" />
-                                <Setter Property="AllowDrop" Value="true" />
+                            <Setter Property="Height" Value="auto" />
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            <Setter Property="Padding" Value="5" />
+                            <Setter Property="Margin" Value="0,0,0,0" />
+                            <Setter Property="MinHeight" Value="10" />
+                            <Setter Property="MaxHeight" Value="40" />
+                            <Setter Property="VerticalContentAlignment" Value="Top" />
+                            <Setter Property="ContentTemplate" Value="{StaticResource DefaultItemTemplate}" />
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="AllowDrop" Value="true" />
 
-                                <Style.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Trigger.EnterActions>
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation
-                                                        Storyboard.TargetProperty="MinHeight"
-                                                        From="40"
-                                                        To="100"
-                                                        Duration="0:0:0.2" />
-                                                    <DoubleAnimation
-                                                        Storyboard.TargetProperty="MaxHeight"
-                                                        From="40"
-                                                        To="195"
-                                                        Duration="0:0:0.2" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </Trigger.EnterActions>
-                                        <Trigger.ExitActions>
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation
-                                                        Storyboard.TargetProperty="MinHeight"
-                                        
-                                                        To="40"
-                                                        Duration="0:0:0.2" />
-                                                    <DoubleAnimation
-                                                        Storyboard.TargetProperty="MaxHeight"
-                                            
-                                                        To="40"
-                                                        Duration="0:0:0.2" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </Trigger.ExitActions>
-                                        <Setter Property="ContentTemplate" Value="{StaticResource SelectedItemTemplate}" />
-                                    </Trigger>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="MinHeight"
+                                                    From="40"
+                                                    To="100"
+                                                    Duration="0:0:0.2" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="MaxHeight"
+                                                    From="40"
+                                                    To="195"
+                                                    Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="MinHeight"
+                                                    To="40"
+                                                    Duration="0:0:0.2" />
+                                                <DoubleAnimation
+                                                    Storyboard.TargetProperty="MaxHeight"
+                                                    To="40"
+                                                    Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                    <Setter Property="ContentTemplate" Value="{StaticResource SelectedItemTemplate}" />
+                                </Trigger>
 
-                                </Style.Triggers>
-                            </Style>
+                            </Style.Triggers>
+                        </Style>
 
 
-                        </ListView.ItemContainerStyle>
-
-
-
-
-                    </ListView>
-                </StackPanel>
+                    </ListView.ItemContainerStyle>
+                </ListView>
             </StackPanel>
             <StackPanel
                 Grid.Row="1"
                 Grid.Column="1"
                 Background="#f2f2f2">
                 <DockPanel>
-                    <Label HorizontalAlignment="Center" Style="{StaticResource Roboto}">
-                        Something
-                    </Label>
+
 
                     <Button
                         x:Name="StartBatchBtn"
@@ -442,7 +467,10 @@
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type Button}">
                                             <Border Background="{TemplateBinding Background}" CornerRadius="5">
-                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                <ContentPresenter
+                                                    Margin="5,5"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center" />
                                             </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -459,24 +487,9 @@
                 </DockPanel>
                 <StackPanel>
 
-                    <StackPanel
-                        Margin="10,0,0,0"
-                        Background="#dbd0b2"
-                        Orientation="Horizontal">
-                        <Button
-                            x:Name="FileSwitch"
-                            Click="FileSwitch_Click"
-                            Style="{StaticResource TabButton}">
-                            Files
-                        </Button>
-                        <Button
-                            x:Name="FolderSwitch"
-                            Click="FolderSwitch_Click"
-                            Style="{StaticResource TabButton}">
-                            Folders
-                        </Button>
-                    </StackPanel>
+
                     <DockPanel Margin="5,0,0,0" LastChildFill="False">
+
 
                         <Button
                             x:Name="AddFilesBtn"
@@ -518,7 +531,10 @@
                                         <TextBlock VerticalAlignment="Center" Text="Files" />
                                     </StackPanel>
                                 </Button>
-                                <Button x:Name="AddByFolder" Click="AddByFolder_Click" Style="{StaticResource DropdownButton}">
+                                <Button
+                                    x:Name="AddByFolder"
+                                    Click="AddByFolder_Click"
+                                    Style="{StaticResource DropdownButton}">
                                     <StackPanel Orientation="Horizontal">
                                         <iconPacks:PackIconFontAwesome
                                             Height="15"
@@ -575,6 +591,23 @@
                             </StackPanel>
                         </Button>
                     </DockPanel>
+                    <StackPanel
+                        Margin="10,0,0,0"
+                        Background="#dbd0b2"
+                        Orientation="Horizontal">
+                        <Button
+                            x:Name="FileSwitch"
+                            Click="FileSwitch_Click"
+                            Style="{StaticResource TabButton}">
+                            Files
+                        </Button>
+                        <Button
+                            x:Name="FolderSwitch"
+                            Click="FolderSwitch_Click"
+                            Style="{StaticResource TabButton}">
+                            Folders
+                        </Button>
+                    </StackPanel>
                     <Grid Height="680">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="23*" />
@@ -673,7 +706,19 @@
                                     Width="*"
                                     MinWidth="50"
                                     Binding="{Binding Path=Status}"
-                                    Header="Status" />
+                                    Header="Status">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="Successful">
+                                                    <Setter Property="Foreground" Value="#05ad56"/>
+                                                    <Setter Property="FontSize" Value="15"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
