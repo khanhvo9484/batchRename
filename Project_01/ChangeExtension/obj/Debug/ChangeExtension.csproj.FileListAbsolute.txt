@@ -21,3 +21,8 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.csproj.CopyComplete
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.pdb
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtensionWindow.g.cs
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension_MarkupCompile.cache
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension_MarkupCompile.lref
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtensionWindow.baml
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.g.resources

@@ -321,7 +321,7 @@
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                 <Setter Property="Padding" Value="5" />
                                 <Setter Property="Margin" Value="0,0,0,0" />
-                                <Setter Property="MinHeight" Value="40" />
+                                <Setter Property="MinHeight" Value="10" />
                                 <Setter Property="MaxHeight" Value="40" />
                                 <Setter Property="VerticalContentAlignment" Value="Top" />
                                 <Setter Property="ContentTemplate" Value="{StaticResource DefaultItemTemplate}" />
@@ -336,7 +336,7 @@
                                                     <DoubleAnimation
                                                         Storyboard.TargetProperty="MinHeight"
                                                         From="40"
-                                                        To="120"
+                                                        To="100"
                                                         Duration="0:0:0.2" />
                                                     <DoubleAnimation
                                                         Storyboard.TargetProperty="MaxHeight"

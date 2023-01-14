@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:LowerCase"
              mc:Ignorable="d" 
              HorizontalContentAlignment="Stretch"
-             Background="White">
-    <Grid>
-        <Label FontWeight="Bold">Lower Case </Label>
+             Background="#f2f1df">
+    <Grid Height="40" VerticalAlignment="Center">
+        <Label FontWeight="Bold" VerticalAlignment="Center">To LowerCase</Label>
     </Grid>
 </UserControl>

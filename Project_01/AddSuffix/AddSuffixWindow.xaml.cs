@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,9 +20,12 @@ namespace AddSuffix
     /// <summary>
     /// Interaction logic for AddSuffixWindow.xaml
     /// </summary>
-    public partial class AddSuffixWindow : UserControl
+    public partial class AddSuffixWindow : UserControl, INotifyPropertyChanged
     {
         AddSuffixRule rule;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string _Suffix { get; set; } = "";
 
         public AddSuffixWindow(AddSuffixRule rule)
@@ -39,7 +43,7 @@ namespace AddSuffix
 
             if (Suffix_input.Text == "")
             {
-                status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
+                //status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
 
             }
         }
@@ -58,9 +62,10 @@ namespace AddSuffix
                 this.rule._Suffix = Suffix_input.Text;
                 DictSetup.Add("Suffix", this.rule._Suffix);
                 this.rule.Setup(DictSetup, null);
-                status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
+                //status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
 
             }
+            NotifyText.Text = "Added";
         }
 
         private void input_suffix_changed(object sender, TextChangedEventArgs e)
@@ -69,12 +74,12 @@ namespace AddSuffix
             {
                 if (Suffix_input.Text != this.rule._Suffix)
                 {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
+                    //status.Source = new BitmapImage(new Uri(@"./Icons/Cross.png", UriKind.Relative));
 
                 }
                 else
                 {
-                    status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
+                    //status.Source = new BitmapImage(new Uri(@"./Icons/Tick.png", UriKind.Relative));
 
                 }
             }
