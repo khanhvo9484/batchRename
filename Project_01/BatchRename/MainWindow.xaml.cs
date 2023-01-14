@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using System.Reflection;
 using Newtonsoft.Json;
 using RestoreWindowPlace;
+using System.Configuration;
 //using System.Windows.Forms;
 
 
@@ -45,6 +46,7 @@ namespace BatchRename
 
 
         BindingList<String> NameRules = new BindingList<String>();
+        BindingList<String> NamePresets = new BindingList<String>();
         ObservableCollection<Preset> Presets = new ObservableCollection<Preset>();
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -60,8 +62,11 @@ namespace BatchRename
         SetVisibility _dropFileArea = new SetVisibility();
         public MainWindow()
         {
+ 
             CreateDLLFolder();
             InitializeComponent();
+        
+
             totalRules = RuleFactory.Instance().countRules();
             for (int i = 0; i < totalRules; i++)
             {
@@ -73,9 +78,10 @@ namespace BatchRename
             ruleCombobox.ItemsSource = NameRules;
             rulesSideBar.ItemsSource = UserRuleList;
             FilesTable.ItemsSource = Files;
-            presetCombobox.ItemsSource = Presets;
+            presetCombobox.ItemsSource = NamePresets;
             FileSwitch_Click(null, null);
             ((App)Application.Current).WindowPlace.Register(this);
+            
 
         }
         
@@ -108,6 +114,27 @@ namespace BatchRename
         {
             FilesTable.ItemsSource = Files;
             loadAllPreset();
+            try
+            {
+                var initPreset = ConfigurationManager.AppSettings.Get("InitPreset");
+                if (initPreset != "")
+                {
+                    loadRules(initPreset);
+                    var presetName = "";
+                    foreach (var preset in Presets)
+                    {
+                        if (preset.PresetPath == initPreset)
+                        {
+                            presetName = preset.PresetName;
+                        }
+                    }
+                    presetCombobox.Text = presetName;
+                }
+            }
+            catch
+            {
+
+            }
         }
         private void Box_checked_click(object sender, RoutedEventArgs e)
         {
@@ -167,6 +194,7 @@ namespace BatchRename
                     }
      
                 _dropFileArea.Visibility = "Hidden";
+                Update_Preview();
             }
         }
 
@@ -229,7 +257,6 @@ namespace BatchRename
             {
                 UserRuleList.Add(RuleList[index].Clone());
             }
-            ruleCombobox.SelectedIndex = -1;
         }
 
         private void checkAllRules_Click(object sender, RoutedEventArgs e)
@@ -333,6 +360,7 @@ namespace BatchRename
                    
                 }
             }
+            Update_Preview();
 
         }
 
@@ -522,6 +550,7 @@ namespace BatchRename
             {
                 _dropFileArea.Visibility = "Hidden";
             }
+            Update_Preview();
            
         }
 
@@ -534,6 +563,7 @@ namespace BatchRename
                 string fileName = file.Substring(file.LastIndexOf('\\') + 1);
                 fileName = fileName.Substring(0, fileName.LastIndexOf('.'));
                 Presets.Add(new Preset() { PresetName = fileName, PresetPath = file });
+                NamePresets.Add(fileName);
             }
             //lvPreset.ItemsSource = Presets;
         }
@@ -608,6 +638,7 @@ namespace BatchRename
                     var json = JsonConvert.SerializeObject(UserRuleList, Formatting.Indented);
                     System.IO.File.WriteAllText(newPath, json);
                     Presets.Add(new Preset() { PresetName = inputPresetName, PresetPath = newPath });
+                    NamePresets.Add(inputPresetName);
                     MessageBox.Show("Successful!", nameWindows);
                     //lvPreset.ItemsSource = Presets;
                 }
@@ -624,13 +655,19 @@ namespace BatchRename
         private void presetCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index=presetCombobox.SelectedIndex;
+            var presetName=presetCombobox.SelectedItem.ToString();
             if(index != -1)
             {
-                loadRules(Presets[index].PresetPath);
+                foreach(Preset preset in Presets)
+                {
+                    if(preset.PresetName == presetName)
+                    {
+                        loadRules(preset.PresetPath);
+                    }
+                }
+                
             }
-            presetCombobox.SelectedValue = "";
-            //var presetName = ((sender as Button).Content as TextBlock).Text;
-
+  
         }
 
         private void BrowsePresetButton_Click(object sender, RoutedEventArgs e)
@@ -792,32 +829,51 @@ namespace BatchRename
                 }
             }
         }
+
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                var index = presetCombobox.SelectedIndex;
+                if(index == -1)
+                {
+                    return;
+                }
+                var presetName = presetCombobox.SelectedItem.ToString();
+                Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                if (presetName != "")
+                {
+                    string presetpath = "";
+                    foreach (var preset in Presets)
+                    {
+                        if (preset.PresetName == presetName)
+                        {
+                            presetpath = preset.PresetPath;
+                        }
+                    }
+                    if (presetpath != "")
+                    {
+                        configuration.AppSettings.Settings["InitPreset"].Value = presetpath;
+                    }
+
+                }
+                else
+                {
+                    configuration.AppSettings.Settings["InitPreset"].Value = "";
+                }
+                configuration.Save(ConfigurationSaveMode.Full, true);
+                ConfigurationManager.RefreshSection(configuration.AppSettings.SectionInformation.Name);
+            }
+            catch
+            {
+
+            }
+
+        }
     }
 
-    public class WorkFlow
-    {
-        public string isActive { get; set; }
-        public string rulesList { get; set; }
-        public string filesList { get; set; }
-        public string foldersList { get; set; }
-    }
-    //public class FileItem
-    //{
-    //    public string Name;
-    //    public string Image;
-    //    public string fileExtention;
-    //    public string Path;
-    //    public string newName;
-    //    public string status;
-    //}
-    //public class FolderItem
-    //{
-    //    public string Name;
-    //    public string Image;
-    //    public string Path;
-    //    public string newName;
-    //    public string status;
-    //}
+
     public class rulesFromPreset
     {
         public string name { get; set; }

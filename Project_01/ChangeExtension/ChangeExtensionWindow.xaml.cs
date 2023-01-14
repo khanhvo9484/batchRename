@@ -50,7 +50,7 @@ namespace ChangeExtension
 
         private void ValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"[\/:*?""<>|\\]+");
+            Regex regex = new Regex(@"[\/:*?""<>|\\\s]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
