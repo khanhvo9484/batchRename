@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              HorizontalContentAlignment="Stretch"
              Loaded="UserControl_Loaded"
-             Background="White">
-    <Grid>
-        <Label FontWeight="Bold">Remove All Space</Label>
+             Background="#f2f1df">
+    <Grid Height="60" VerticalAlignment="Center">
+        <Label FontWeight="Bold" VerticalAlignment="Center">Remove All Space</Label>
     </Grid>
 </UserControl>

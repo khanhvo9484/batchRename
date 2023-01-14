@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -19,9 +20,12 @@ namespace AddPrefix
     /// <summary>
     /// Interaction logic for AddPrefixWindow.xaml
     /// </summary>
-    public partial class AddPrefixWindow : UserControl
+    public partial class AddPrefixWindow : UserControl, INotifyPropertyChanged
     {
         AddPrefixRule rule;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string _Prefix { get; set; } = "";
         public AddPrefixWindow(AddPrefixRule rule)
         {
@@ -54,7 +58,7 @@ namespace AddPrefix
                 DictSetup.Add("Prefix", this.rule._Prefix);
                 this.rule.Setup(DictSetup, null);
             }
-           
+            NotifyText.Text = "Added";
 
         }
     }

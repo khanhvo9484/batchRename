@@ -56,3 +56,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\obj\Debug\AddPr
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\obj\Debug\AddPrefix.csproj.CopyComplete
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\obj\Debug\AddPrefix.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\obj\Debug\AddPrefix.pdb
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddPrefix\bin\Debug\RestoreWindowPlace.Net45.xml

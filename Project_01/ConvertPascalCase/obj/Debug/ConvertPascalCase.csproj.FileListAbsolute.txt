@@ -26,3 +26,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ConvertPascalCase\obj\Deb
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.csproj.CopyComplete
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ConvertPascalCase\obj\Debug\ConvertPascalCase.pdb
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ConvertPascalCase\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ConvertPascalCase\bin\Debug\RestoreWindowPlace.Net45.xml

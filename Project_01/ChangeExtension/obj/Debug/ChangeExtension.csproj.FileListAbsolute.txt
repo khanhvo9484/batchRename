@@ -26,3 +26,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension_MarkupCompile.lref
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtensionWindow.baml
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\obj\Debug\ChangeExtension.g.resources
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\ChangeExtension\bin\Debug\RestoreWindowPlace.Net45.xml

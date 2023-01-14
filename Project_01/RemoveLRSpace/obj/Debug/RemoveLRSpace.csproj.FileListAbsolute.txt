@@ -26,3 +26,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveLRSpace\obj\Debug\R
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.csproj.CopyComplete
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveLRSpace\obj\Debug\RemoveLRSpace.pdb
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveLRSpace\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\RemoveLRSpace\bin\Debug\RestoreWindowPlace.Net45.xml

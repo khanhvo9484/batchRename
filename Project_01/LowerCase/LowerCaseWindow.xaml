@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              HorizontalContentAlignment="Stretch"
              Background="#f2f1df">
-    <Grid Height="40" VerticalAlignment="Center">
+    <Grid Height="60" VerticalAlignment="Center">
         <Label FontWeight="Bold" VerticalAlignment="Center">To LowerCase</Label>
     </Grid>
 </UserControl>

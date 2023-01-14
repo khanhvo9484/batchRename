@@ -26,3 +26,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\LowerCase\obj\Debug\Lower
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.csproj.CopyComplete
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\LowerCase\obj\Debug\LowerCase.pdb
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\LowerCase\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\LowerCase\bin\Debug\RestoreWindowPlace.Net45.xml

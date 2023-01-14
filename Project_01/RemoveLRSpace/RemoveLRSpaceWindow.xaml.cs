@@ -29,5 +29,9 @@ namespace RemoveLRSpace
             this.rule._arg2 = "";
             InitializeComponent();
         }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -9,7 +9,7 @@
              HorizontalContentAlignment="Stretch"
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch">
-    <Grid Height="40" VerticalAlignment="Center">
+    <Grid Height="60" VerticalAlignment="Center">
         <Label FontWeight="Bold" VerticalAlignment="Center">To PascalCase</Label>
     </Grid>
 </UserControl>

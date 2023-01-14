@@ -26,3 +26,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSu
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.csproj.CopyComplete
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.dll
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\obj\Debug\AddSuffix.pdb
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\AddSuffix\bin\Debug\RestoreWindowPlace.Net45.xml

@@ -526,3 +526,5 @@ C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\BatchRename\obj\Debug\Bat
 C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\BatchRename\obj\Debug\BatchRename.pdb
 D:\Github\batchRename\Project_01\BatchRename\bin\Debug\RestoreWindowPlace.Net45.dll
 D:\Github\batchRename\Project_01\BatchRename\bin\Debug\RestoreWindowPlace.Net45.xml
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\BatchRename\bin\Debug\RestoreWindowPlace.Net45.dll
+C:\Users\ADMIN\Documents\GitHub\batchRename\Project_01\BatchRename\bin\Debug\RestoreWindowPlace.Net45.xml
