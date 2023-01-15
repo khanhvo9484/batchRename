@@ -66,8 +66,11 @@ namespace RemoveLRSpace
                 }
                 else
                 {
-                    string[] filenameList = oldname.Split('.');
-                    filenameList[0] = filenameList[0].Trim();
+                    int index = oldname.LastIndexOf('.');
+                    string[] filenameList = new string[2];
+
+                    filenameList[0] = oldname.Substring(0,index).Trim();
+                    filenameList[1] = oldname.Substring(index + 1);
                     return string.Join(".", filenameList);
                 }
             }

@@ -14,7 +14,7 @@
     <Grid >
         <StackPanel Margin="10" >
             <TextBlock FontWeight="Bold" HorizontalAlignment="left" Padding="3">Add Prefix</TextBlock>
-            <TextBox x:Name="prefixInput" Text="" TextChanged="prefixInput_TextChanged"  VerticalAlignment="Center" HorizontalAlignment="Stretch"  Padding="3" 
+            <TextBox x:Name="prefixInput" PreviewTextInput="ValidationTextBox" Text="" TextChanged="prefixInput_TextChanged"  VerticalAlignment="Center" HorizontalAlignment="Stretch"  Padding="3" 
                          Height="25"/>
             <DockPanel LastChildFill="True"   HorizontalAlignment="Right">
                 <Grid>

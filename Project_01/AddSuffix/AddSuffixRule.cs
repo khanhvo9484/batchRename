@@ -87,26 +87,25 @@ namespace AddSuffix
                 //FILE
                 try
                 {
-                    int index = -1;
-                    index = oldname.LastIndexOf('.');
-                    string resultStr = "";
+                    int index = oldname.LastIndexOf('.');
+            
+     
                     string[] filenameList = new string[2];
                     if (index != -1)
                     {
-                        resultStr = oldname.Substring(0, index);
-                        filenameList[1] = oldname.Substring(index + 1, oldname.Length - index - 1);
+                        filenameList[0] = oldname.Substring(0, index);
+                        filenameList[1] = oldname.Substring(index + 1);
                     }
 
 
-                    if (Helper.Instance().hasSuffix(resultStr, _Suffix))
+                    if (Helper.Instance().hasSuffix(filenameList[0], _Suffix))
                     {
                         return oldname;
                     }
                     else
                     {
-                        resultStr = resultStr + " " + _Suffix;
+                        filenameList[0] = filenameList[0] + " " + _Suffix;
                     }
-                    filenameList[0] = resultStr;
                     return string.Join(".", filenameList);
                 }
                 catch

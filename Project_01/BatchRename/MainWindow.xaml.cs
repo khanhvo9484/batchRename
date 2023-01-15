@@ -31,6 +31,16 @@ namespace BatchRename
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
+    public class UndoList
+    {
+        public string Path { get; set; }
+        public string NewPath { get; set; }
+        public UndoList(string path, string newPath)
+        {
+            Path = path;
+            NewPath = newPath;
+        }
+    }
     
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
@@ -44,6 +54,8 @@ namespace BatchRename
         BindingList<ISystemItem> Files = new BindingList<ISystemItem>();
         BindingList<ISystemItem> Folders = new BindingList<ISystemItem>();
 
+        List<UndoList> UndoFiles = new List<UndoList>();
+        List<UndoList> UndoFolders = new List<UndoList>();
 
         BindingList<String> NameRules = new BindingList<String>();
         BindingList<String> NamePresets = new BindingList<String>();
@@ -130,13 +142,13 @@ namespace BatchRename
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             FilesTable.ItemsSource = Files;
-            loadAllPreset();
+            LoadAllPreset();
             try
             {
                 var initPreset = ConfigurationManager.AppSettings.Get("InitPreset");
                 if (initPreset != "")
                 {
-                    loadRules(initPreset);
+                    LoadRule(initPreset);
                     var presetName = "";
                     foreach (var preset in Presets)
                     {
@@ -181,8 +193,6 @@ namespace BatchRename
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                List<MyFile> tempFiles = new List<MyFile>();
-                List<MyFolder> tempFolders = new List<MyFolder>();
                 // Note that you can have more than one file.
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
@@ -468,11 +478,13 @@ namespace BatchRename
         {
             if (Type == "file")
             {
+                
                 if (Files.Count == 0)
                 {
                     MessageBox.Show("List of files is empty, please insert one");
                     return;
                 }
+                UndoFiles.Clear();
                 foreach (MyFile file in Files)
                 {
                     if (file.NewName != null)
@@ -485,6 +497,7 @@ namespace BatchRename
                             {
                                 continue;
                             }
+                            UndoFiles.Add(new UndoList(file.Path,newPath));
                             System.IO.File.Move(file.Path, newPath);
                             file.Path = newPath;
                             file.Name = file.NewName;
@@ -506,6 +519,7 @@ namespace BatchRename
                     MessageBox.Show("List of folders is empty, please insert one");
                     return;
                 }
+                UndoFolders.Clear();
                 foreach (MyFolder folder in Folders)
                 {
                     if (folder.NewName != null)
@@ -517,6 +531,7 @@ namespace BatchRename
                             {
                                 continue;
                             }
+                            UndoFolders.Add(new UndoList(folder.Path, newPath));
                             Directory.Move(folder.Path, newPath);
                             folder.Path = newPath;
                             folder.Name = folder.NewName;
@@ -563,7 +578,7 @@ namespace BatchRename
            
         }
 
-        public void loadAllPreset()
+        public void LoadAllPreset()
         {
             string[] fileArray = Directory.GetFiles("Preset", "*.json");
             Presets.Clear();
@@ -574,16 +589,16 @@ namespace BatchRename
                 Presets.Add(new Preset() { PresetName = fileName, PresetPath = file });
                 NamePresets.Add(fileName);
             }
-            //lvPreset.ItemsSource = Presets;
+
         }
-        public void loadRules(string filePath)
+        public void LoadRule(string filePath)
         {
             UserRuleList.Clear();
             using (StreamReader r = new StreamReader(filePath))
             {
                 string json = r.ReadToEnd();
-                List<rulesFromPreset> items = JsonConvert.DeserializeObject<List<rulesFromPreset>>(json);
-                foreach (rulesFromPreset rule in items)
+                List<PresetFormat> items = JsonConvert.DeserializeObject<List<PresetFormat>>(json);
+                foreach (PresetFormat rule in items)
                 {
                     for (int i = 0; i < RuleList.Count(); i++)
                     {
@@ -632,7 +647,7 @@ namespace BatchRename
                         {
                             if (Presets[i].PresetName == inputPresetName)
                             {
-                                loadRules(Presets[i].PresetPath);
+                                LoadRule(Presets[i].PresetPath);
                             }
                         }
                         MessageBox.Show("Successful!", nameWindows);
@@ -649,18 +664,12 @@ namespace BatchRename
                     Presets.Add(new Preset() { PresetName = inputPresetName, PresetPath = newPath });
                     NamePresets.Add(inputPresetName);
                     MessageBox.Show("Successful!", nameWindows);
-                    //lvPreset.ItemsSource = Presets;
+ 
                 }
 
-             
-                //lblName.Text = inputDialog.Answer;
             }
         }
 
-        private void loadPresetRules(object sender, RoutedEventArgs e)
-        {
-            
-        }
 
 
         private void BrowsePresetButton_Click(object sender, RoutedEventArgs e)
@@ -676,14 +685,14 @@ namespace BatchRename
                 {
                     //MessageBox.Show(files[0]);
                     
-                    loadRules(files[0]);
+                    LoadRule(files[0]);
                     var fileName= System.IO.Path.GetFileName(files[0]);
                     if (System.IO.File.Exists($@"Preset\{fileName}")){
                         MessageBox.Show("Preset existed", "Load preset");
                         return;
                     }
                     File.Copy($@"{files[0]}", $@"Preset\{fileName}");
-                    loadAllPreset();
+                    LoadAllPreset();
                     MessageBox.Show("Preset loaded", "Load preset");
                 }
                 catch
@@ -887,23 +896,115 @@ namespace BatchRename
                 {
                     if (preset.PresetName == presetName)
                     {
-                        loadRules(preset.PresetPath);
+                        LoadRule(preset.PresetPath);
                     }
                 }
             }
         }
+
+        private void UndoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Type == "file")
+            {
+                if (UndoFiles.Count == 0)
+                {
+                    MessageBox.Show("Can not undo, may be you haven't rename any files yet", "Notification");
+                    return;
+                }
+                MessageBoxResult Command = MessageBox.Show("Do you want to restore files?", "Restore", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (Command)
+                {
+                    case MessageBoxResult.Yes:
+                        break;
+                    case MessageBoxResult.No:
+                        return;
+                }
+                try
+                {
+                    bool flag = false;
+                    foreach (var file in UndoFiles)
+                    {
+                        Directory.Move(file.NewPath, file.Path);
+                        flag = true;
+                    }
+                    if (!flag)
+                    {
+                        MessageBox.Show("Something went wrong", "Notification");
+                        return ;
+                    }
+                    if (flag)
+                    {
+                        Files.Clear();
+                        foreach(var file in UndoFiles)
+                        {
+                            MyFile tempFile = new MyFile(file.Path)
+                            {
+                                Status = "Restored"
+                            };
+                            Files.Add(tempFile);
+                        }
+                        Update_Preview();
+                        UndoFiles.Clear();
+                    }
+                    MessageBox.Show("Restored Files", "Notification");
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong", "Notification");
+                }
+                
+            }
+            else
+            {
+                if (UndoFolders.Count == 0)
+                {
+                    MessageBox.Show("Can not undo, may be you haven't rename any files yet", "Notification");
+                    return;
+                }
+                MessageBoxResult Command = MessageBox.Show("Do you want to restore folders?", "Restore", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (Command)
+                {
+                    case MessageBoxResult.Yes:
+                        break;
+                    case MessageBoxResult.No:
+                        return;
+                }
+                try
+                {
+                    bool flag = false;
+                    foreach (var file in UndoFolders)
+                    {
+                        Directory.Move(file.NewPath, file.Path);
+                        flag = true;
+                    }
+                    if (!flag)
+                    {
+                        MessageBox.Show("Something went wrong", "Notification");
+                        return;
+                    }
+                    if (flag)
+                    {
+                        Folders.Clear();
+                        foreach (var file in UndoFolders)
+                        {
+                            MyFolder tempFile = new MyFolder(file.Path)
+                            {
+                                Status = "Restored"
+                            };
+                            Folders.Add(tempFile);
+                        }
+                        Update_Preview();
+                        UndoFolders.Clear();
+                    }
+                    MessageBox.Show("Restored Folders", "Notification");
+                }
+                catch
+                {
+                    MessageBox.Show("Something went wrong", "Notification");
+                }
+
+            }
+        }
     }
 
-
-    public class rulesFromPreset
-    {
-        public string name { get; set; }
-        public string _arg1 { get; set; }
-        public string _arg2 { get; set; }
-    }
-    public class Preset
-    {
-        public string PresetName { get; set; }
-        public string PresetPath { get; set; }
-    }
 }

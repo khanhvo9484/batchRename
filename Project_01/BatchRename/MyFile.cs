@@ -26,6 +26,15 @@ namespace BatchRename
             this.FileExtention = myfile.Extension;
             this.Status = "";
         }
+        public MyFile(string fileDir,string newName)
+        {
+            FileInfo myfile = new FileInfo(fileDir);
+            this.Name = myfile.Name;
+            this.NewName = this.Name;
+            this.Path = fileDir;
+            this.FileExtention = myfile.Extension;
+            this.Status = "";
+        }
 
         public MyFile(string name, string fileExtension, string newName, string path, string status)
         {

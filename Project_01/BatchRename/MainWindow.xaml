@@ -56,6 +56,18 @@
                             <TextBlock VerticalAlignment="Center" Text="Import New Rule" />
                         </StackPanel>
                     </Button>
+                    <Button
+                        x:Name="UndoButton"
+                        Click="UndoButton_Click"
+                        Style="{StaticResource HeaderButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                Height="20"
+                                Margin="5"
+                                Source="Icon/undo.png" />
+                            <TextBlock VerticalAlignment="Center" Text="Undo" />
+                        </StackPanel>
+                    </Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
@@ -714,7 +726,15 @@
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding Status}" Value="Successful">
                                                     <Setter Property="Foreground" Value="#05ad56"/>
-                                                    <Setter Property="FontSize" Value="15"/>
+                                                    <Setter Property="FontSize" Value="13"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="Restored">
+                                                    <Setter Property="Foreground" Value="#606126"/>
+                                                    <Setter Property="FontSize" Value="13"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="Failed">
+                                                    <Setter Property="Foreground" Value="#f50c0c"/>
+                                                    <Setter Property="FontSize" Value="13"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

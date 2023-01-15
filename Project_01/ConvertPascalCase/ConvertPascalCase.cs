@@ -72,15 +72,39 @@ namespace ConvertPascalCase
         {
             try
             {
-                Regex regex = new Regex(@"[ ]{2,}", RegexOptions.None);
-                var temp = regex.Replace(oldname, @" "); // "words with multiple spaces"
-                string[] tokens = temp.Split(new[] { " " }, StringSplitOptions.None);
-                var newName = "";
-                foreach (string token in tokens)
+                if (!Helper.Instance().isFile(oldname))
                 {
-                    newName += FirstLetterToUpper(token);
+                    //FOLDER
+                    Regex regex = new Regex(@"[ ]{2,}", RegexOptions.None);
+                    var temp = regex.Replace(oldname, @" "); // "words with multiple spaces"
+                    string[] tokens = temp.Split(new[] { " " }, StringSplitOptions.None);
+                    var newName = "";
+                    foreach (string token in tokens)
+                    {
+                        newName += FirstLetterToUpper(token);
+                    }
+                    return newName;
                 }
-                return newName;
+                else
+                {
+                    var index = oldname.LastIndexOf('.');
+                    string[] filenameList=new string[2];
+                    filenameList[0]=oldname.Substring(0, index);
+                    filenameList[1]=oldname.Substring(index + 1);
+
+                    Regex regex = new Regex(@"[ ]{2,}", RegexOptions.None);
+                    var temp = regex.Replace(filenameList[0], @" "); // "words with multiple spaces"
+                    string[] tokens = temp.Split(new[] { " " }, StringSplitOptions.None);
+                    var newName = "";
+                    foreach (string token in tokens)
+                    {
+                        newName += FirstLetterToUpper(token);
+                    }
+                    filenameList[0]=newName;
+                    
+                    return string.Join(".",filenameList);
+                }
+                
             }
             catch
             {

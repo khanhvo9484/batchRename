@@ -74,11 +74,14 @@ namespace RemoveAllSpace
                 else
                 {
                     //FILE
-                    string[] filenameList = oldname.Split('.');
-                    string strResult = filenameList[0];
+                    int index=oldname.LastIndexOf('.');
+                    string[] filenameList = new string[2];
+                    filenameList[0] = oldname.Substring(0,index);
+                    filenameList[1] = oldname.Substring(index+1);
+
                     string pattern = @"\s";
-                    strResult = Regex.Replace(strResult, pattern, "");
-                    filenameList[0] = strResult;
+                    filenameList[0] = Regex.Replace(filenameList[0], pattern, "");
+
                     return string.Join(".", filenameList);
                 }
             }

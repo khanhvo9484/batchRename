@@ -55,8 +55,6 @@ namespace AddCounter
                 ClickApply(this, e);
             }
             Dictionary<string, string> DictSetup = new Dictionary<string, string>();
-            List<string> ListSetup = new List<string>();
-
 
             if (Start_input.Text != "" && Step_input.Text != "")
             {
@@ -82,8 +80,8 @@ namespace AddCounter
         }
         private void ValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            Regex regex = new Regex(@"[^0-9]{0,255}$");
+            e.Handled = !regex.IsMatch(e.Text);
         }
 
 
@@ -91,7 +89,7 @@ namespace AddCounter
         {
             if (Start_input.Text != "")
             {
-              
+                NotifyText.Text = "";
             }
 
         }
@@ -102,11 +100,11 @@ namespace AddCounter
             {
                 if (int.Parse(Step_input.Text) != this.rule._step)
                 {
-                    
+                    NotifyText.Text = "";
                 }
                 else
-                {     
-
+                {
+                    NotifyText.Text = "";
                 }
             }
 

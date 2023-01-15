@@ -84,17 +84,16 @@ namespace ChangeExtension
                 else
                 {
                     //File
-                    int lastIndex;
-                    lastIndex = oldname.LastIndexOf('.');
-                    string[] resultList = new string[2];
+                    int lastIndex = oldname.LastIndexOf('.');
+                    string[] filenameList = new string[2];
                     if (lastIndex != -1)
                     {
-                        resultList[0] = oldname.Substring(0, lastIndex); // "My. name. is Bond"
+                        filenameList[0] = oldname.Substring(0, lastIndex); // "My. name. is Bond"
                                                                          // "_James Bond!"
                     }
 
-                    resultList[1] = _NewExt;
-                    string result = string.Join(".", resultList);
+                    filenameList[1] = _NewExt;
+                    string result = string.Join(".", filenameList);
                     return result;
                 }
             }

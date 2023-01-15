@@ -188,6 +188,8 @@
     <Compile Include="ISystemItem.cs" />
     <Compile Include="MyFile.cs" />
     <Compile Include="MyFolder.cs" />
+    <Compile Include="Preset.cs" />
+    <Compile Include="PresetFormat.cs" />
     <Compile Include="RuleFactory.cs" />
     <Page Include="InputDialog.xaml">
       <SubType>Designer</SubType>

@@ -61,5 +61,11 @@ namespace AddPrefix
             NotifyText.Text = "Added";
 
         }
+
+        private void ValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"[\/:*?""<>|\\]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }

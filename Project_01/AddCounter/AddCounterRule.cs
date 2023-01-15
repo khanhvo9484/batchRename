@@ -111,8 +111,10 @@ namespace AddCounter
                 else
                 {
                     //File
-                    string[] filenameList = oldname.Split('.');
-
+                    int index = oldname.LastIndexOf('.');
+                    string[] filenameList = new string[2];
+                    filenameList[0] = oldname.Substring(0, index);
+                    filenameList[1] = oldname.Substring(index + 1);
 
                     filenameList[0] += " " + _start.ToString("00");
                     string result = string.Join(".", filenameList);
