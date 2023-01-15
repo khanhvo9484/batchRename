@@ -1,0 +1,11 @@
+[
+  {
+    "$id": "1",
+    "name": "Replace character",
+    "_arg1": "Kh",
+    "_arg2": "a",
+    "_ArrChar": [
+      "Kh"
+    ]
+  }
+]

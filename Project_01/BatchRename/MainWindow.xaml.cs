@@ -582,6 +582,7 @@ namespace BatchRename
         {
             string[] fileArray = Directory.GetFiles("Preset", "*.json");
             Presets.Clear();
+            NamePresets.Clear();
             foreach (string file in fileArray)
             {
                 string fileName = file.Substring(file.LastIndexOf('\\') + 1);

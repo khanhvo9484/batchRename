@@ -80,7 +80,7 @@ namespace AddCounter
         }
         private void ValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex(@"[^0-9]{0,255}$");
+            Regex regex = new Regex(@"^[0-9]{0,255}$");
             e.Handled = !regex.IsMatch(e.Text);
         }
 
@@ -98,14 +98,7 @@ namespace AddCounter
 
             if (Step_input.Text != "" && Step_input.Text != "0")
             {
-                if (int.Parse(Step_input.Text) != this.rule._step)
-                {
-                    NotifyText.Text = "";
-                }
-                else
-                {
-                    NotifyText.Text = "";
-                }
+                NotifyText.Text = "";
             }
 
         }
